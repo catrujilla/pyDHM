@@ -1,0 +1,6 @@
+Things to ask (comment to) Raul:
+
+- Library structure (utilities).
+- Angular Spectrum?
+- Complete Fresnel phase terms?
+- 
