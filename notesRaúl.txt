@@ -11,11 +11,10 @@ Things to ask (comment to) Raul:
 	Traditional 4-step
 	Traditional 3-step
 	Traditional 5-step
-	(off-axis) Blind method
+	(off-axis) Blind method, costFunction
 	(off-axis) Automatic ROI
   utilities/
 	spatialFiltering
-	costFunction
 	referenceWave
 	displayReconstruction(Amplitude, Intensity or Phase)
 	readHologram (including cut_holograms)
