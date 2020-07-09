@@ -1,4 +1,4 @@
 pyDiffraction
 =============
 
-A Python library to numerically recover phase information from optical setups.
+A Python library to numerically recover complex wave field information from different imaging optical setups recordings.
