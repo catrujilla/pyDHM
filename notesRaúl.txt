@@ -7,13 +7,13 @@ Things to ask (comment to) Raul:
 	Fresnel Bluestein
 	Angular Spectrum
 	Kirchhoff-Helholtz (Kreuzer DLHM) ??
-  phaseShifting
+  phaseShifting/
 	Traditional 4-step
 	Traditional 3-step
 	Traditional 5-step
 	(off-axis) Blind method
 	(off-axis) Automatic ROI
-  utilities
+  utilities/
 	spatialFiltering
 	costFunction
 	referenceWave
