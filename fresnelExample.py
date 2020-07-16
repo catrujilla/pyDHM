@@ -15,17 +15,17 @@ Links-->          - https://unal-optodigital.github.io/JDiffraction/
 import numpy as np
 
 import numericalPropagation
-from utilities.display import show
+from utilities.display import imageShow
 import utilities
 
 #pyDiffraction welcome message
 utilities.salutation()
 
 #Load an image and automatically converts it into a gray-scale image
-hologram = utilities.imread('data/Holo.bmp')
+hologram = utilities.imageRead('data/Holo.bmp')
 
 #Display an gray value image with the given title
-#show (hologram, 'Hologram')
+#imageShow (hologram, 'Hologram')
 
 #This function calculates the propagated complex field of an input transmitance 
 #(in this case this function is used to numerically reconstruct an hologram)
@@ -37,5 +37,8 @@ complexfield = numericalPropagation.fresnel( (hologram - np.average(hologram)), 
 out = utilities.display.amplitude(complexfield, False)
 
 #Display an gray value image with the given title
-show (out, 'Amplitude recontruction - log display ' + str(i) + ' cms' )
+imageShow (out, 'Amplitude recontruction - log display ' + str(i) + ' cms' )
 
+#Save this data into a image file in the disk
+#utilities.imageSave ('Amplitude recontruction - log display ' + str(i) + ' cms.bmp' , out)
+utilities.imageSave ('recontruction.bmp' , out)
