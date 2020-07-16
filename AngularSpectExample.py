@@ -22,7 +22,7 @@ import utilities
 utilities.salutation()
 
 #Load an image and automatically converts it into a gray-scale image
-hologram = utilities.imread('HoloMedal_3.tif')
+hologram = utilities.imread('data/HoloMedal_3.tif')
 
 #Display an gray value image with the given title
 show (hologram, 'Hologram')
