@@ -22,19 +22,20 @@ import utilities
 utilities.salutation()
 
 #Load an image and automatically converts it into a gray-scale image
-hologram = utilities.imread('data/HoloMedal_3.tif')
+hologram = utilities.imread('data/Holo.bmp')
 
 #Display an gray value image with the given title
-show (hologram, 'Hologram')
+#show (hologram, 'Hologram')
 
 #This function calculates the propagated complex field of an input transmitance 
 #(in this case this function is used to numerically reconstruct an hologram)
-complexfield = numericalPropagation.fresnel( (hologram - np.average(hologram)), 532e-9, 3.480, 4.5e-6, 4.5e-6)
+i = 72
+complexfield = numericalPropagation.fresnel( (hologram - np.average(hologram)), 632.8e-9, i/100, 11e-6, 11e-6)
 
 #This function calculates the amplitude representatin of a given complex field
 #(The second parameter allows to determine if a log operation is performed)
-out = utilities.display.amplitude(complexfield, True)
+out = utilities.display.amplitude(complexfield, False)
 
 #Display an gray value image with the given title
-show (out, 'Amplitude recontruction - log display')
+show (out, 'Amplitude recontruction - log display ' + str(i) + ' cms' )
 

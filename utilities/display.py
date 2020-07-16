@@ -43,7 +43,7 @@ def intensity (inp, log):
     return out
 
 # Function to calcule the phase representation of a given complex field using the 
-    #function andgle
+    #function 'angle'
 # Inputs:
 # inp - The input complex field
 def phase (inp):
@@ -52,14 +52,14 @@ def phase (inp):
 	
     return out
 
-# Function to calcule the phase representation of a given complex field using the 
-    #function andgle
+# Function to display an image
 # Inputs:
 # inp - The input complex field
-def show (inp, title):
+# title - The title of the displayed image
+def imageShow (inp, title):
         
     plt.imshow(inp, cmap='gray'), plt.title(title)  # image in gray scale
-    plt.show()  # show hologram
+    plt.show()  # show image
 	
     return
 
