@@ -12,26 +12,29 @@ Abstract -->        Sample code to use the fresnel method to numerically reconst
 Links-->          - https://unal-optodigital.github.io/JDiffraction/
 """
 
-import cv2
 import numpy as np
-from matplotlib import pyplot as plt
-from numericalPropagation.fresnel import fresnel
-from numericalPropagation.display import amplitude
 
-namefile = 'HoloMedal_3.tif'
-hologram = cv2.imread(namefile, cv2.IMREAD_GRAYSCALE)  # convert automatically to gray scale the image read
-plt.imshow(hologram, cmap='gray'), plt.title('hologram')  # image in gray scale
-plt.show()  # show hologram
+import numericalPropagation
+from utilities.display import show
+import utilities
 
-print (np.average(hologram))
+#pyDiffraction welcome message
+utilities.salutation()
+
+#Load an image and automatically converts it into a gray-scale image
+hologram = utilities.imread('HoloMedal_3.tif')
+
+#Display an gray value image with the given title
+show (hologram, 'Hologram')
 
 #This function calculates the propagated complex field of an input transmitance 
 #(in this case this function is used to numerically reconstruct an hologram)
-complexfield = fresnel( (hologram - np.average(hologram)), 532e-9, 3.480, 4.5e-6, 4.5e-6)
+complexfield = numericalPropagation.fresnel( (hologram - np.average(hologram)), 532e-9, 3.480, 4.5e-6, 4.5e-6)
 
 #This function calculates the amplitude representatin of a given complex field
 #(The second parameter allows to determine if a log operation is performed)
-out =  amplitude(complexfield, True)
+out = utilities.display.amplitude(complexfield, True)
 
-plt.imshow(out, cmap='gray'), plt.title('Amplitude recontruction - log display')  # image in gray scale
-plt.show()  # show hologram
+#Display an gray value image with the given title
+show (out, 'Amplitude recontruction - log display')
+

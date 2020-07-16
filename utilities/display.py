@@ -13,18 +13,55 @@ Links-->          - https://unal-optodigital.github.io/JDiffraction/
 """
 
 import numpy as np
+from matplotlib import pyplot as plt
 
 # Function to calcule the amplitude representation of a given complex field
 # Inputs:
 # inp - The input complex field
 # log - boolean variable to determine if a log representation is applied
-
 def amplitude (inp, log):
     
     out = np.abs(inp)
     
     if log == True:
-        out = 20 * log(out)
+        out = 20 * np.log(out)
 	
     return out
+
+# Function to calcule the intensity representation of a given complex field
+# Inputs:
+# inp - The input complex field
+# log - boolean variable to determine if a log representation is applied
+def intensity (inp, log):
+    
+    out = np.abs(inp)
+    out = out*out
+    
+    if log == True:
+        out = 20 * np.log(out)
+	
+    return out
+
+# Function to calcule the phase representation of a given complex field using the 
+    #function andgle
+# Inputs:
+# inp - The input complex field
+def phase (inp):
+        
+    out = np.angle(inp)
+	
+    return out
+
+# Function to calcule the phase representation of a given complex field using the 
+    #function andgle
+# Inputs:
+# inp - The input complex field
+def show (inp, title):
+        
+    plt.imshow(inp, cmap='gray'), plt.title(title)  # image in gray scale
+    plt.show()  # show hologram
+	
+    return
+
+
 

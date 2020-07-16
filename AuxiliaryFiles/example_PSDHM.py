@@ -3,7 +3,6 @@ from matplotlib import pyplot as plt
 import numpy as np
 import PSDHBlind
 
-
 def read_sample():
     # Neuron
     #image1 = 'NeuronSilhoutte_1.tif'
