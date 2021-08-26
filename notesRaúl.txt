@@ -6,7 +6,6 @@ Things to ask (comment to) Raul:
 	Fresnel
 	Fresnel Bluestein
 	Angular Spectrum
-	Kirchhoff-Helholtz (Kreuzer DLHM) ??
   phaseShifting/
 	Traditional 4-step
 	Traditional 3-step
@@ -20,4 +19,3 @@ Things to ask (comment to) Raul:
 	readHologram (including cut_holograms)
 
 - Yes to OpenCV.
-- Do we include the professor?
