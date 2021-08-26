@@ -2,14 +2,16 @@
 import numpy as np
 from math import pi
 
-# Function to diffract a complex field using Fresnel approximation with
-# Fourier method
-# Inputs:
-# field - complex field
-# z - propagation distance
-# wavelength - wavelength
-# dx/dy - sampling pitches
 def fresnel(field, z, wavelength, dx, dy):
+    """
+    # Function to diffract a complex field using Fresnel approximation with
+    # Fourier method
+    # Inputs:
+    # field - complex field
+    # z - propagation distance
+    # wavelength - wavelength
+    # dx/dy - sampling pitches
+    """
     M, N = field.shape
     x = np.arange(0, N, 1)  # array x
     y = np.arange(0, M, 1)  # array y
@@ -33,13 +35,15 @@ def fresnel(field, z, wavelength, dx, dy):
 	
     return out
 
-# Function to diffract a complex field using the angular spectrum approach
-# Inputs:
-# field - complex field
-# z - propagation distance
-# wavelength - wavelength
-# dx/dy - sampling pitches
 def angularSpectrum(field, z, wavelength, dx, dy):
+    '''
+    # Function to diffract a complex field using the angular spectrum approach
+    # Inputs:
+    # field - complex field
+    # z - propagation distance
+    # wavelength - wavelength
+    # dx/dy - sampling pitches
+    '''
     M, N = field.shape
     x = np.arange(0, N, 1)  # array x
     y = np.arange(0, M, 1)  # array y
