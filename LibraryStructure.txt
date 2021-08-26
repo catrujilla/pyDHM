@@ -1,5 +1,3 @@
-Things to ask (comment to) Raul:
-
 - Library structure (utilities):
 
   numericalPropagation/
@@ -18,4 +16,3 @@ Things to ask (comment to) Raul:
 	displayReconstruction(Amplitude, Intensity or Phase)
 	readHologram (including cut_holograms)
 
-- Yes to OpenCV.
