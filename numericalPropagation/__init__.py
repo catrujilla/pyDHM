@@ -19,10 +19,9 @@ def fresnel(field, z, wavelength, dx, dy):
 
     dxout = (wavelength * z) / (M * dx)
     dyout = (wavelength * z) / (N * dy)
-	
-    k =  (2 * pi ) / wavelength
-	
-    z_phase = np.exp2((1j * k * z )/ (1j * wavelength * z))
+    
+    z_phase = np.exp2(1j * 2 * pi * z / wavelength) / (1j * wavelength * z)
+   
     out_phase = np.exp2((1j * pi / (wavelength * z)) * (np.power(X * dxout, 2) + np.power(Y * dyout, 2)) )
     in_phase = np.exp2((1j * pi / (wavelength * z)) * (np.power(X * dx, 2) + np.power(Y * dy, 2)))
 
@@ -35,8 +34,8 @@ def fresnel(field, z, wavelength, dx, dy):
 	
     return out
 
-def bluestein(field, z, wavelength, dx, dy, dyout, dxout):
-    
+def bluestein(field, z, wavelength, dx, dy, dxout, dyout):
+    """
     # Function to diffract a complex field using Fresnel approximation with 
     # Fresnel-Bluestein's method
     # Inputs:
@@ -45,12 +44,7 @@ def bluestein(field, z, wavelength, dx, dy, dyout, dxout):
     # lambda - wavelength
     # dx/dy - sampling pitches
     # dxout/dyout - output window pitches
-    
-    '''
-    [N,M] = size(field);
-    [m,n] = meshgrid(1-M/2:M/2,1-N/2:N/2);
-    % [p,q] = meshgrid(1-M/2:M/2,1-N/2:N/2);
-    '''
+    """
     
     M, N = field.shape
     x = np.arange(0, N, 1)  # array x
@@ -59,10 +53,14 @@ def bluestein(field, z, wavelength, dx, dy, dyout, dxout):
 
     padx = int(M/2)
     pady = int(N/2)
-    
-    k =  (2 * pi ) / wavelength
 
-    z_phase = np.exp2((1j * k * z )/ (1j * wavelength * z))
+    #print ('k: ' + str(k))
+    #print ('wavelength: ' + str(wavelength))
+    #print ('z: ' + str(z))
+    
+    z_phase = np.exp2(1j * 2 * pi * z / wavelength) / (1j * wavelength * z)
+    
+    #print ('z_phase: ' + str(z_phase))
     
     output_phase = np.exp2((-1j * pi/(wavelength*z)) * (dxout*(dx-dxout)*np.power(X, 2)+dyout*(dy-dyout)*np.power(Y, 2)))
     
@@ -84,7 +82,8 @@ def bluestein(field, z, wavelength, dx, dy, dyout, dxout):
     out = np.fft.ifftshift(out)
     
     out = out[padx:padx+M,pady:pady+N]
-    out = out*z_phase*output_phase;
+    out = out*z_phase
+    out = out*output_phase
     
     return out
 
