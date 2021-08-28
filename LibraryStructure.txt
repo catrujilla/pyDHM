@@ -3,16 +3,23 @@
   numericalPropagation/
 	Fresnel
 	Fresnel Bluestein
-	Angular Spectrum
+	Angular Spectrum (Hace falta implementar el ejemplo)
+  phaseCompensation/
+	(off-axis) costFunction (Raúl)*
+	(off-axis) Full Automatic ROI
+	(off-axis) Fast Automatic ROI
   phaseShifting/
-	Traditional 4-step
-	Traditional 3-step
-	Traditional 5-step
-	(off-axis) Blind method, costFunction
-	(off-axis) Automatic ROI
+	Traditional 4-step (Raúl)*
+	Traditional 3-step (Raúl)*
+	Traditional 5-step (Raúl)*
+	Slightly Off-axis (Ferraro's method) 4-step method*
+	(off-axis) blindMethod (Raúl)*
   utilities/
-	spatialFiltering
+	ImageShow
+	ImageRead(including cut_holograms)(Raúl)?
+	Amplitude calculation
+	Intensity calculation
+	Phase calculation
 
-	displayReconstruction(Amplitude, Intensity or Phase)
-	readHologram (including cut_holograms)
-
+*Falta por implementar.
+?No sé a qué nos referíamos con esto.
