@@ -5,7 +5,7 @@ import scipy.misc
 
 
 def salutation():
-    print ("Hello world! This is pyDiffraction library!")
+    print ("Hello world! This is pyDHM library!")
     return
 
 def imageRead (namefile):
