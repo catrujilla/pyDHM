@@ -12,7 +12,7 @@
 	(off-axis) Automatic ROI
   utilities/
 	spatialFiltering
-	referenceWave
+
 	displayReconstruction(Amplitude, Intensity or Phase)
 	readHologram (including cut_holograms)
 

@@ -3,7 +3,7 @@
 Title-->            Angular Spectrym Example
 Author-->           Ana Doblas, Carlos Trujillo, Raul Castaneda,
 Date-->             03/03/2019
-Last modified-->    16/07/2020
+Last modified-->    28/08/2021
                     University of Memphis
                     Optical Imaging Research lab (OIRL)
                     EAFIT University
@@ -22,19 +22,26 @@ import utilities
 utilities.salutation()
 
 #Load an image and automatically converts it into a gray-scale image
-hologram = utilities.imread('data/HoloMedal_3.tif')
+hologram = utilities.imread('hol_testUSAF_Obj_8.33.bmp')
 
 #Display an gray value image with the given title
-show (hologram, 'Hologram')
+imageShow (defocus_im, 'DHM hologram')
 
-#This function calculates the propagated complex field of an input transmitance 
-#(in this case this function is used to numerically reconstruct an hologram)
-complexfield = numericalPropagation.fresnel( (hologram - np.average(hologram)), 532e-9, 3.480, 4.5e-6, 4.5e-6)
+#Initially, the DHM hologram must be spatially-filtered
+filt_holo = spatial_filtering (defocus_im-np.average(defocus_im))
 
-#This function calculates the amplitude representatin of a given complex field
-#(The second parameter allows to determine if a log operation is performed)
-out = utilities.display.amplitude(complexfield, True)
+#All units are calculated in meters
+wavelength =  528e-9
+deltaX = 4.687e-6
 
-#Display an gray value image with the given title
-show (out, 'Amplitude recontruction - log display')
+for i in range (-200,50,40):
 
+    dist = i*1e-3
+    #Propagating via AS to focus/defocus
+    complexfield = angularSpectrum( filt_holo, dist, wavelength, deltaX, deltaX)
+
+    #This function calculates the amplitude representation of a given complex field
+    out = intensity(complexfield, False)
+
+    #Display a gray-value image with the given title
+    imageShow (out, 'Propagated image_'  + str(i) + ' mm' )
