@@ -35,6 +35,59 @@ def fresnel(field, z, wavelength, dx, dy):
 	
     return out
 
+def bluestein(field, z, wavelength, dx, dy, dyout, dxout):
+    
+    # Function to diffract a complex field using Fresnel approximation with 
+    # Fresnel-Bluestein's method
+    # Inputs:
+    # field - complex field
+    # z - propagation distance
+    # lambda - wavelength
+    # dx/dy - sampling pitches
+    # dxout/dyout - output window pitches
+    
+    '''
+    [N,M] = size(field);
+    [m,n] = meshgrid(1-M/2:M/2,1-N/2:N/2);
+    % [p,q] = meshgrid(1-M/2:M/2,1-N/2:N/2);
+    '''
+    
+    M, N = field.shape
+    x = np.arange(0, N, 1)  # array x
+    y = np.arange(0, M, 1)  # array y
+    X, Y = np.meshgrid(x - (N / 2), y - (M / 2), indexing='xy')
+
+    padx = int(M/2)
+    pady = int(N/2)
+    
+    k =  (2 * pi ) / wavelength
+
+    z_phase = np.exp2((1j * k * z )/ (1j * wavelength * z))
+    
+    output_phase = np.exp2((-1j * pi/(wavelength*z)) * (dxout*(dx-dxout)*np.power(X, 2)+dyout*(dy-dyout)*np.power(Y, 2)))
+    
+    input_phase1 = np.exp2(((1j*pi)/(wavelength*z))*(dx*(dx-dxout)*np.power(X, 2)+dy*(dy-dyout)*np.power(Y, 2)))
+    input_phase2 = np.exp2(((1j*pi)/(wavelength*z))*(dx*dxout*np.power(X, 2) + dy*dyout*np.power(Y, 2)))  
+    
+    f1 = np.pad(field*input_phase1, ((padx, padx), (pady, pady)), mode='constant')
+    IP1 = np.fft.fftshift(f1)
+    IP1 = np.fft.fft2(IP1)
+    IP1 = np.fft.fftshift(IP1)
+    
+    f2 = np.pad(input_phase2, ((padx, padx), (pady, pady)), mode='constant')
+    IP2 = np.fft.fftshift(f2)
+    IP2 = np.fft.fft2(IP2)
+    IP2 = np.fft.fftshift(IP2)  
+    
+    out = np.fft.ifftshift(IP1*IP2)
+    out = np.fft.ifft2(out)
+    out = np.fft.ifftshift(out)
+    
+    out = out[padx:padx+M,pady:pady+N]
+    out = out*z_phase*output_phase;
+    
+    return out
+
 def angularSpectrum(field, z, wavelength, dx, dy):
     '''
     # Function to diffract a complex field using the angular spectrum approach
