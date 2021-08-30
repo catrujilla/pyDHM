@@ -14,9 +14,9 @@ Links-->          - https://unal-optodigital.github.io/JDiffraction/
 
 import numpy as np
 
-import numericalPropagation
-from utilities.display import imageShow
+import numericalPropagation.propagators as npr
 import utilities
+import utilities.display as ud
 
 #pyDiffraction welcome message
 utilities.salutation()
@@ -25,7 +25,7 @@ utilities.salutation()
 hologram = utilities.imageRead('data/die_1.jpg')
 
 #Display an gray value image with the given title
-imageShow (hologram, 'Hologram')
+utilities.imageShow(hologram, 'Hologram')
 
 z = 78 #reconstruction (propagation) distance in cm
 wavelength =  632.8e-9 #wavelength of illumination
@@ -34,9 +34,9 @@ deltaX_out = deltaY_out = 8.5e-5 #output pixel pitch
  
 #This function calculates the propagated complex field of an input transmitance 
 #(in this case this function is used to numerically reconstruct an hologram with scaled output coordinates)
-complexfield = numericalPropagation.bluestein( (hologram - np.average(hologram)), z/100, wavelength, deltaX_in, deltaY_in, deltaX_out, deltaY_out)
-out = utilities.display.amplitude(complexfield, False)
+complexfield = npr.bluestein( (hologram - np.average(hologram)), z/100, wavelength, deltaX_in, deltaY_in, deltaX_out, deltaY_out)
+out = ud.amplitude(complexfield, False)
 
 #Display an gray value image with the given title
-imageShow (out, 'Amplitude recontruction - log display ' + str(z) + ' cms' )
+utilities.imageShow(out, 'Amplitude recontruction - log display ' + str(z) + ' cms' )
 

@@ -14,8 +14,7 @@ Links-->          - https://unal-optodigital.github.io/JDiffraction/
 
 import numpy as np
 
-import numericalPropagation as npr
-#from utilities.display import imageShow
+import numericalPropagation.propagators as npr
 import utilities
 import utilities.display as ud
 
