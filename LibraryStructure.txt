@@ -1,12 +1,12 @@
 - Library structure (utilities):
 
   numericalPropagation/
-	Fresnel
-	Fresnel Bluestein
+	Fresnel (Listo)
+	Fresnel Bluestein (Listo)
 	Angular Spectrum (Hace falta implementar el ejemplo)
   phaseCompensation/
 	(off-axis) costFunction (Raúl)*
-	(off-axis) Full Automatic ROI
+	(off-axis) Full Automatic ROI (Listo)
 	(off-axis) Fast Automatic ROI (Trujillo)*
   phaseShifting/
 	Traditional 4-step (Raúl)*
@@ -15,11 +15,11 @@
 	Slightly Off-axis (Ferraro's method) 4-step method (Trujillo)*
 	(off-axis) blindMethod (Raúl)*
   utilities/
-	ImageShow
+	ImageShow (Listo)
 	ImageRead(including cut_holograms)(Raúl)?
-	Amplitude calculation
-	Intensity calculation
-	Phase calculation
+	Amplitude calculation (Listo)
+	Intensity calculation (Listo)
+	Phase calculation (Listo)
 
 *Falta por implementar.
 ?No sé a qué nos referíamos con esto.

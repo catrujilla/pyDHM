@@ -36,7 +36,7 @@ s = 2 #Size (in pixels) of the search grid
 steps = 10 #Number of steps (along each direction) in the search grid
 
 #Phase compensation computation via FRS (Full ROI search)
-comp_phase = phc.FRS(defocus_hol-np.average(defocus_hol), True, wavelength, deltaX, deltaY, s, steps)
+comp_phase = phc.FRS(defocus_hol-np.average(defocus_hol), False, wavelength, deltaX, deltaY, s, steps)
 
 inten = ud.amplitude(comp_phase, False)
 phase = ud.phase(comp_phase)
