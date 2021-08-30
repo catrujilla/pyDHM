@@ -52,16 +52,5 @@ def phase (inp):
 	
     return out
 
-# Function to display an image
-# Inputs:
-# inp - The input complex field
-# title - The title of the displayed image
-def imageShow (inp, title):
-        
-    plt.imshow(inp, cmap='gray'), plt.title(title)  # image in gray scale
-    plt.show()  # show image
-	
-    return
-
 
 

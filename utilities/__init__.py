@@ -2,12 +2,14 @@
 from PIL import Image, ImageOps 
 #from skimage.io import imsave
 import scipy.misc
+from matplotlib import pyplot as plt
 
-
+#Salutation function of the library
 def salutation():
-    print ("Hello world! This is pyDHM library!")
+    print ("Hello world! This is pyDHM library version 1.0")
     return
-
+    
+#Function to read an image file from the disk
 def imageRead (namefile):
         
     Im = Image.open(namefile)
@@ -15,13 +17,13 @@ def imageRead (namefile):
 	
     return loadImage
 
-def imageSave (namefile, obj):
-
-    #im = Image.fromarray(obj).convert('RGB')  
-    #im.save(namefile)
-    #imsave(namefile,obj)
-    scipy.misc.imsave(namefile, obj)
+# Function to display an image
+# Inputs:
+# inp - The input complex field
+# title - The title of the displayed image
+def imageShow (inp, title):
+        
+    plt.imshow(inp, cmap='gray'), plt.title(title)  # image in gray scale
+    plt.show()  # show image
 	
     return
-
-
