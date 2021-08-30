@@ -101,6 +101,6 @@ def FRS (inp, upper, wavelength, deltaX, deltaY, s=2, steps=10):
     comp_phase = holo_filter * ref_wave
     
     print ("Phase compensation finished.")
-    print(x_max_out, y_max_out)
+    #print(x_max_out, y_max_out)
     
     return comp_phase
