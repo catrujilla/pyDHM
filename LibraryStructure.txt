@@ -7,12 +7,12 @@
   phaseCompensation/
 	(off-axis) costFunction (Raúl)*
 	(off-axis) Full Automatic ROI
-	(off-axis) Fast Automatic ROI
+	(off-axis) Fast Automatic ROI (Trujillo)*
   phaseShifting/
 	Traditional 4-step (Raúl)*
 	Traditional 3-step (Raúl)*
 	Traditional 5-step (Raúl)*
-	Slightly Off-axis (Ferraro's method) 4-step method*
+	Slightly Off-axis (Ferraro's method) 4-step method (Trujillo)*
 	(off-axis) blindMethod (Raúl)*
   utilities/
 	ImageShow
