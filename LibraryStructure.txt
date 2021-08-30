@@ -3,7 +3,7 @@
   numericalPropagation/
 	Fresnel (Listo)
 	Fresnel Bluestein (Listo)
-	Angular Spectrum (Hace falta implementar el ejemplo)
+	Angular Spectrum (Listo)
   phaseCompensation/
 	(off-axis) costFunction (Raúl)*
 	(off-axis) Full Automatic ROI (Listo)
