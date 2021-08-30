@@ -45,29 +45,23 @@ phase = ud.phase(comp_phase)
 utilities.imageShow(inten, 'Intensity of the sample')
 utilities.imageShow(phase, 'Compensated phase of the sample')
 
+#If the sample is out-of-focus (no image-plane acqusition), we can focus by propagating.
+#Propagating via angular spectrum method implemented in pyDHM.
 
-'''
-
-#Display an gray value image with the given title
-imageShow (defocus_im, 'DHM hologram')
-
-#Initially, the DHM hologram must be spatially-filtered
-filt_holo = spatial_filtering (defocus_im-np.average(defocus_im))
-
-#All units are calculated in meters
-wavelength =  528e-9
-deltaX = 4.687e-6
-
-for i in range (-200,50,40):
+for i in range (-100,100,20):
 
     dist = i*1e-3
-    #Propagating via AS to focus/defocus
-    complexfield = angularSpectrum( filt_holo, dist, wavelength, deltaX, deltaX)
+    #Propagating via angular spectrum to focus the information of the sample
+    complexfield = npr.angularSpectrum( comp_phase, dist, wavelength, deltaX, deltaX)
 
     #This function calculates the amplitude representation of a given complex field
-    out = intensity(complexfield, False)
-
-    #Display a gray-value image with the given title
-    imageShow (out, 'Propagated image_'  + str(i) + ' mm' )
+    out = ud.amplitude(complexfield, False)
     
-'''
+    #Display a gray-value image with the given title
+    utilities.imageShow(out, 'Propagated image_'  + str(i) + ' mm' )
+    
+    #This function calculates the amplitude representation of a given complex field
+    out = ud.phase(complexfield)
+    utilities.imageShow(out, 'Propagated phase image_'  + str(i) + ' mm' )
+
+    
