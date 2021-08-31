@@ -24,7 +24,7 @@ import phaseCompensation.phaseCompensators as phc
 utilities.salutation()
 
 #Load an image and automatically converts it into a gray-scale image
-defocus_hol = utilities.imageRead('data/Nymphadea2-1.jpg')
+defocus_hol = utilities.imageRead('data/hol_testUSAF_8.29_0.bmp')
 
 #Parameters for the retrieval of the compensated phase sample information
 #All units are calculated in meters
@@ -36,7 +36,7 @@ s = 5 #The initial number of steps in each direction of the search
 step = 0.2 #The step in the grid search
 
 #Phase compensation computation via FRS (Full ROI search)
-comp_phase = phc.FastRS(defocus_hol-np.average(defocus_hol), True, wavelength, deltaX, deltaY, s, step)
+comp_phase = phc.FastRS(defocus_hol-np.average(defocus_hol), False, wavelength, deltaX, deltaY, s, step)
 
 inten = ud.amplitude(comp_phase, False)
 phase = ud.phase(comp_phase)

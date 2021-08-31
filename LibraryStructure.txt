@@ -7,7 +7,7 @@
   phaseCompensation/
 	(off-axis) costFunction (Raúl)*
 	(off-axis) Full Automatic ROI (Listo)
-	(off-axis) Fast Automatic ROI (Trujillo)*
+	(off-axis) Fast Automatic ROI (Listo)
   phaseShifting/
 	Traditional 4-step (Raúl)*
 	Traditional 3-step (Raúl)*
