@@ -12,7 +12,7 @@
 	Traditional 4-step (Raúl)*
 	Traditional 3-step (Raúl)*
 	Traditional 5-step (Raúl)*
-	Slightly Off-axis (Ferraro's method) 4-step method (Trujillo)*
+	Slightly Off-axis (Ferraro's method) 4-step method (Listo)
 	(off-axis) blindMethod (Raúl)*
   utilities/
 	ImageShow (Listo)
