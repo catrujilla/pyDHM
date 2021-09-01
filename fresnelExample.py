@@ -18,6 +18,8 @@ import numericalPropagation.propagators as npr
 import utilities
 import utilities.display as ud
 
+import time
+
 #pyDiffraction welcome message
 utilities.salutation()
 
@@ -33,7 +35,15 @@ deltaX_in = deltaY_in = 11e-6 #input pixel pitch
 
 #This function calculates the propagated complex field of an input transmitance 
 #(in this case this function is used to numerically reconstruct an hologram)
+start = time.time()
 complexfield = npr.fresnel( (hologram - np.average(hologram)), z/100, wavelength, deltaX_in, deltaY_in)
+end = time.time()
+print("Elapsed (with compilation) = %s" % (end - start))
+
+start = time.time()
+complexfield = npr.fresnel( (hologram - np.average(hologram)), z/100, wavelength, deltaX_in, deltaY_in)
+end = time.time()
+print("Elapsed (after compilation) = %s" % (end - start))
 
 #This function calculates the amplitude representatin of a given complex field
 #(The second parameter allows to determine if a log operation is performed)
