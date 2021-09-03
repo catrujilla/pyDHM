@@ -21,6 +21,7 @@ import utilities.display as ud
 #pyDiffraction welcome message
 utilities.salutation()
 
+
 #Load an image and automatically converts it into a gray-scale image
 hologram = utilities.imageRead('data/die_1.jpg')
 
