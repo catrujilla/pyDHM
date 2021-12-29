@@ -5,15 +5,15 @@
 	Fresnel Bluestein (Listo)
 	Angular Spectrum (Listo)
   phaseCompensation/
-	(off-axis) costFunction (Raúl)*
+	(off-axis) costFunction (Listo)
 	(off-axis) Full Automatic ROI (Listo)
 	(off-axis) Fast Automatic ROI (Listo)
   phaseShifting/
-	Traditional 4-step (Raúl)*
-	Traditional 3-step (Raúl)*
-	Traditional 5-step (Raúl)*
+	Traditional 4-step (Listo)
+	Traditional 3-step (Listo)
+	Traditional 5-step (Listo)
 	Slightly Off-axis (Ferraro's method) 4-step method (Listo)
-	(off-axis) blindMethod (Raúl)*
+	(off-axis) blindMethod (Listo)
   utilities/
 	ImageShow (Listo)
 	ImageRead(including cut_holograms)(Raúl)?
