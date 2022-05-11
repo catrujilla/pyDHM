@@ -1,11 +1,12 @@
 """
-Title-->            off-axis numerical reconstruction example.
+Title-->            Phase-shifting reconstruction examples.
 Author-->           Ana Doblas, Carlos Trujillo, Raul Castaneda,
-Date-->             12/20/2021
-                    University of Memphis -  Optical Imaging Research laboratory (OIRL)
+Date-->             11/04/2022
+Groups-->           University of Memphis -  Optical Imaging Research laboratory (OIRL)
                     EAFIT University - Applied Optics Group
-Links-->          -
-
+e-mail-->           catrujilla@eafit.edu.co and adoblas@memphis.edu
+Links-->            More information about the library can be found on the website
+                    https://github.com/catrujilla/pyDHM         -
 """
 
 import utilities._init_ as ui
@@ -15,6 +16,7 @@ import utilities.display as dis
 
 # Phase shifting using the SOSR approach
 '''
+print ("SOSR example")
 # Load the holograms
 inp0 = ui.imageRead('data/phase-shifting samples/cut_samples/I0_Fresnel_Lens.bmp')
 inp1 = ui.imageRead('data/phase-shifting samples/cut_samples/I1_Fresnel_Lens.bmp')
@@ -31,11 +33,11 @@ ui.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = dis.phase(output)
 ui.imageShow(phase, 'Phase reconstruction')
-#'''
-
-
-# Phase shifting via ps5-inline ()
 '''
+
+# Phase shifting via ps5-inline
+'''
+print ("ps5-inline example")
 inp0 = ui.imageRead('data/phase-shifting samples/PS5/h1_PS5.png')
 inp1 = ui.imageRead('data/phase-shifting samples/PS5/h2_PS5.png')
 inp2 = ui.imageRead('data/phase-shifting samples/PS5/h3_PS5.png')
@@ -49,9 +51,9 @@ output = ps.PS5(inp0, inp1, inp2, inp3, inp4)
 ui.imageShow(output, 'Phase reconstruction')
 '''
 
-
-# Phase shifting via ps4-inline ()
+# Phase shifting via ps4-inline
 '''
+print ("ps4-inline example")
 inp0 = ui.imageRead('data/phase-shifting samples/PS4/h1-PS4.png')
 inp1 = ui.imageRead('data/phase-shifting samples/PS4/h2-PS4.png')
 inp2 = ui.imageRead('data/phase-shifting samples/PS4/h3-PS4.png')
@@ -64,9 +66,9 @@ output = ps.PS4(inp0, inp1, inp2, inp3)
 ui.imageShow(output, 'Phase reconstruction')
 '''
 
-
-# Phase shifting via ps3-inline ()
+# Phase shifting via ps3-inline
 '''
+print ("ps3-inline example")
 inp0 = ui.imageRead('data/phase-shifting samples/PS3/h1_PS3.png')
 inp1 = ui.imageRead('data/phase-shifting samples/PS3/h2_PS3.png')
 inp2 = ui.imageRead('data/phase-shifting samples/PS3/h3_PS3.png')
@@ -78,17 +80,17 @@ output = ps.PS3(inp0, inp1, inp2)
 ui.imageShow(output, 'Phase reconstruction')
 '''
 
-
-# three blind raw Holograms
 '''
+# three blind raw Holograms
+print ("BPS3 example")
 # Load the holograms
 inp0 = ui.imageRead('data/phase-shifting samples/usaf_1_cut.jpg')
 inp1 = ui.imageRead('data/phase-shifting samples/usaf_2_cut.jpg')
 inp2 = ui.imageRead('data/phase-shifting samples/usaf_3_cut.jpg')
 
-#ui.imageShow(inp0, 'Hologram 1')
-#ui.imageShow(inp0, 'Hologram 2')
-#ui.imageShow(inp0, 'Hologram 3')
+ui.imageShow(inp0, 'Hologram 1')
+ui.imageShow(inp0, 'Hologram 2')
+ui.imageShow(inp0, 'Hologram 3')
 
 # Phase shifting via BPS3 (three holograms slightly off-axis)
 output = ps.BPS3(inp2, inp1, inp0, 0.532, 2.4, 2.4)
@@ -98,12 +100,12 @@ phase = dis.phase(output)
 ui.imageShow(phase, 'Phase reconstruction')
 '''
 
-
 # two blind raw Holograms
 '''
+print ("BPS2 example")
 # Load the holograms
-inp0 = ui.imageRead('data/phase-shifting samples/Neuron_1.tif')
-inp1 = ui.imageRead('data/phase-shifting samples/Neuron_3.tif')
+#inp0 = ui.imageRead('data/phase-shifting samples/Neuron_1.jpg')
+#inp1 = ui.imageRead('data/phase-shifting samples/Neuron_3.jpg')
 inp0 = ui.imageRead('data/phase-shifting samples/usaf_1_cut.jpg')
 inp1 = ui.imageRead('data/phase-shifting samples/usaf_2_cut.jpg')
 
