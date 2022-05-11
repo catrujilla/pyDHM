@@ -11,12 +11,12 @@ import numpy as np
 import utilities._init_ as ui
 import utilities.display as dis
 import numericalPropagation.propagators as pr
-import tools.tools as tl
+import utilities.tools as tl
 import utilities.speckleMethods as speckle
 
 
 # Angular spectrum
-'''
+
 # Load the input plane
 input = ui.imageRead('data/numericalPropagation samples/UofM-1-inv.jpg')
 input = ui.imageRead('data/numericalPropagation samples/+3cm.tif')
@@ -46,10 +46,10 @@ for z in range(-100, 80, 1):
     intensity = dis.intensity(output, False)
     ui.imageShow(intensity, 'output field')
 
-'''
+
 
 # Fresnel transform and speckle reduction vu HM2F
-'''
+
 # Load the input plane
 input = ui.imageRead('data/numericalPropagation samples/horse.bmp')
 ui.imageShow(input, 'input field')
@@ -74,11 +74,11 @@ ui.imageShow(amplitude, 'output field')
 
 #amplitude = dis.amplitude(denoise, False)
 #ui.imageShow(amplitude, 'output denoise')
-'''
+
 
 
 # Fresnel-Bluestein transform
-'''
+
 # Load the input plane
 input = ui.imageRead('data/numericalPropagation samples/die_1.jpg')
 ui.imageShow(input, 'input field')
@@ -97,5 +97,5 @@ output = pr.bluestein(filter - np.average(filter), 30/100, 632.8e-9, 7e-6, 7e-6,
 # Display the output field
 amplitude = dis.amplitude(output, False)
 ui.imageShow(amplitude, 'output field')
-'''
+
 
