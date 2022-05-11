@@ -28,7 +28,7 @@ ft_holo = dis.intensity(ft_holo, True)
 ui.imageShow(ft_holo, 'FT hologram')
 
 # Spatial filter
-filter = tl.sfc(input, 160, 303, 276, True)
+filter = tl.sfc(input, 160, 303, 276)
 
 # Numerical propagation using the angular spectrum
 #output = pr.angularSpectrum(filter, 70000, 0.633, 6.9, 6.9)
@@ -37,8 +37,8 @@ filter = tl.sfc(input, 160, 303, 276, True)
 #intensity = dis.intensity(output, False)
 #ui.imageShow(intensity, 'output field')
 
-
-for z in range(-100, 80, 1):
+for z in range(-100, 80, 10):
+    # Warning: Depending on the propagation distance step, this cycle can takke too much time.
     # Numerical propagation using the angular spectrum
     output = pr.angularSpectrum(filter, z, 0.000633, 0.0069, 0.0069)
 
