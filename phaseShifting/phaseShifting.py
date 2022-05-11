@@ -85,7 +85,7 @@ def SOSR(inp0, inp1, inp2, inp3, upper, wavelength, dx, dy, s=1, steps=4):
 
     k = (2 * pi) / wavelength
 
-    print("Synthetic building of the reference wave started....")
+    print("Synthetic building of the reference wavefront started....")
 
     for fx_temp in arrayX:
         for fy_temp in arrayY:
@@ -122,7 +122,7 @@ def SOSR(inp0, inp1, inp2, inp3, upper, wavelength, dx, dy, s=1, steps=4):
             # print (sum)
 
     # print(x_max_out, y_max_out)
-    print("Synthetic reference wave built.")
+    print("Synthetic reference wavefront built.")
 
     # Retrieving the best reconstruction (compensated phase)
     theta_x = math.asin((fx_0 - x_max_out) * wavelength / (N * dx))
@@ -137,7 +137,7 @@ def SOSR(inp0, inp1, inp2, inp3, upper, wavelength, dx, dy, s=1, steps=4):
 
     comp_phase = Isynth
 
-    print("Phase compensation finished.")
+    print("Phase-shfting reconstruction finished.")
 
     return comp_phase
 
@@ -187,7 +187,8 @@ def BPS2(Inp0, Inp1, wavelength, dx, dy):
                                                         fy_max_d2), method='Cobyla', tol=1e-6)
     print("Minimization process finished.")
 
-     # computing d1 and d2
+    print("Phase compensation started....")
+    # computing d1 and d2
     x = res.x
     theta1 = x[0]
     theta2 = x[1]
@@ -206,7 +207,6 @@ def BPS2(Inp0, Inp1, wavelength, dx, dy):
     out, fx_max, fy_max = phs.spatialFiltering(FTd2, M, N)
 
     # compensation process
-    print("Phase compensation started....")
     # computing the digital reference wave
     ref_wave = phs.referenceWave(M, N, wavelength, dx, dy, fx_max, fy_max)
     comp_phase = out * ref_wave
@@ -261,6 +261,7 @@ def BPS3(Inp0, Inp1, Inp2, wavelength, dx, dy):
                                                     fy_max_d2), method='Cobyla', tol=1e-6)
     print("Minimization process finished.")
 
+    print("Phase compensation started....")
     # computing d1, d2 and d3
     x = res.x
     theta1 = x[0]
@@ -283,7 +284,6 @@ def BPS3(Inp0, Inp1, Inp2, wavelength, dx, dy):
     out, fx_max, fy_max = phs.spatialFiltering(FTd, M, N)
 
     # compensation process
-    print("Phase compensation started....")
     # computing the digital reference wave
     ref_wave = phs.referenceWave(M, N, wavelength, dx, dy, fx_max, fy_max)
     comp_phase = out * ref_wave
@@ -306,10 +306,10 @@ def PS5(Inp0, Inp1, Inp2, Inp3, Inp4):
     inp3 = np.array(Inp3)
     inp4 = np.array(Inp4)
 
-    print("Phase compensation started....")
+    print("Phase-shifing reconstruction started....")
     # computing the compensation
     comp_phase = np.arctan((2*(inp3-inp1))/(2*inp2-inp0-inp4))
-    print("Phase compensation finished.")
+    print("Phase-shifing reconstruction finished.")
 
     return comp_phase
 
@@ -329,10 +329,10 @@ def PS4(Inp0, Inp1, Inp2, Inp3):
 
 
     # compensation process
-    print("Phase compensation started....")
+    print("Phase-shifing reconstruction started....")
     # computing the compensation
     comp_phase = np.arctan((inp3-inp1)/(inp2-inp0))
-    print("Phase compensation finished.")
+    print("Phase-shifing reconstruction finished.")
 
     return comp_phase
 
@@ -350,10 +350,10 @@ def PS3(Inp0, Inp1, Inp2):
     inp2 = np.array(Inp2)
 
 
-    print("Phase compensation started....")
+    print("Phase-shifing reconstruction started....")
 
     # computing the compensation
     comp_phase = np.arctan((np.sqrt(3)*(inp2-inp0))/((inp2+inp0)-(2*inp1)))
-    print("Phase compensation finished.")
+    print("Phase-shifing reconstruction finished.")
 
     return comp_phase
