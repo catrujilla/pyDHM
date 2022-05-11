@@ -14,9 +14,8 @@ import numericalPropagation.propagators as pr
 import utilities.tools as tl
 import utilities.speckleMethods as speckle
 
-
 # Angular spectrum
-
+print ("Angular spectrum example")
 # Load the input plane
 input = ui.imageRead('data/numericalPropagation samples/UofM-1-inv.jpg')
 input = ui.imageRead('data/numericalPropagation samples/+3cm.tif')
@@ -31,11 +30,11 @@ ui.imageShow(ft_holo, 'FT hologram')
 filter = tl.sfc(input, 160, 303, 276)
 
 # Numerical propagation using the angular spectrum
-#output = pr.angularSpectrum(filter, 70000, 0.633, 6.9, 6.9)
+output = pr.angularSpectrum(filter, 70000, 0.633, 6.9, 6.9)
 
 # Display the output field
-#intensity = dis.intensity(output, False)
-#ui.imageShow(intensity, 'output field')
+intensity = dis.intensity(output, False)
+ui.imageShow(intensity, 'focused output field')
 
 for z in range(-100, 80, 10):
     # Warning: Depending on the propagation distance step, this cycle can takke too much time.
@@ -44,10 +43,10 @@ for z in range(-100, 80, 10):
 
     # Display the output field
     intensity = dis.intensity(output, False)
-    ui.imageShow(intensity, 'output field')
+    ui.imageShow(intensity, 'output field ' + str(z))
 
 
-
+print ("Fresnel transform example")
 # Fresnel transform and speckle reduction vu HM2F
 
 # Load the input plane
@@ -70,11 +69,10 @@ amplitude = dis.amplitude(output, False)
 ui.imageShow(amplitude, 'output field')
 
 # HM2F to reduce the speckle
-# denoise = speckle.HM2F(amplitude, 7, False, False)
+denoise = speckle.HM2F(amplitude, 7, False, False)
 
 #amplitude = dis.amplitude(denoise, False)
-#ui.imageShow(amplitude, 'output denoise')
-
+ui.imageShow(amplitude, 'output field denoised')
 
 
 # Fresnel-Bluestein transform
