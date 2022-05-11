@@ -1,5 +1,5 @@
 """
-Title-->            off-axis numerical reconstruction example.
+Title-->            Off-axis numerical reconstruction example.
 Author-->           Carlos Trujillo, Ana Doblas, and Raul Castaneda
 Date-->             11/04/2022
 Groups-->           University of Memphis -  Optical Imaging Research laboratory (OIRL)
@@ -75,7 +75,6 @@ ui.imageShow(amplitude, 'Amplitude reconstruction')
 phase = dis.phase(output)
 ui.imageShow(phase, 'Phase reconstruction')
 '''
-
 
 # CNT example
 
