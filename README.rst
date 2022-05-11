@@ -18,5 +18,7 @@ Three sample scripts are provided using the library functions:
 The library has been envisioned, designed, and implemented by the Optical Imaging Research laboratory (OIRL) from the University of Memphis and the Applied Optics research group of Universidad EAFIT. The main contributors to the library are:
 
 PhD candidate Raúl Castañeda-Sepulveda (University of Memphis)
+
 Professor Dr. Ana Doblas (University of Memphis)
+
 Professor Dr. Carlos Trujillo (Universidad EAFIT)
