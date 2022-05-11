@@ -295,7 +295,6 @@ def CNT(inp, wavelength, dx, dy, x1, x2, y1, y2, cur, s, step):
     # dx, dy - Pixel dimensions of the camera sensor used for recording the hologram
     '''
 
-
     # Retrieving the input shape
     inp = np.array(inp)
     M, N = inp.shape
