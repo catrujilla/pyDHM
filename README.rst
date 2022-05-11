@@ -11,7 +11,7 @@ An open-source Python library to numerically recover the complex wavefield infor
 
 Three sample scripts are provided using the library functions:
 
-- The “example_numericalPropagation.py:” script includes examples of the use of the three numerical propagators implemented in the library to focus DHM reconstructions.
+- The “example_numericalPropagation.py” script includes examples of the use of the three numerical propagators implemented in the library to focus DHM reconstructions.
 - The “examples_compensation.py” script includes examples of the use of the three compensation methods for telecentric off-axis DHM holograms and one example of the non-telecentric wavefield compensation.
 - The “examples_phaseShitting.py” script includes examples of the use of two phase-shifting retrieval methods for slightly off-axis DHM holograms and three phase-shifting retrieval methods for in-line setups.
 
