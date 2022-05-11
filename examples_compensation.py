@@ -19,6 +19,7 @@ import numericalPropagation.propagators as pr
 
 # FRS example using library
 '''
+print ("FRS example")
 # Load the hologram
 hologram = ui.imageRead('data/compensation samples/fly 20x.bmp')
 ui.imageShow(hologram, 'Hologram')
@@ -35,9 +36,9 @@ phase = dis.phase(output)
 ui.imageShow(phase, 'Phase reconstruction')
 '''
 
-
 # ERS example
 '''
+print ("ERS example")
 # Load the hologram
 #hologram = ui.imageRead('data/compensation samples/star-target.png')
 hologram = ui.imageRead('data/compensation samples/fly 20x.bmp')
@@ -56,16 +57,16 @@ phase = dis.phase(output)
 ui.imageShow(phase, 'Phase reconstruction')
 '''
 
-
 # CFS example
 '''
+print ("CFS example")
 # Load the hologram
 #hologram = ui.imageRead('data/compensation samples/hologram EAFIT.jpg')
 hologram = ui.imageRead('data/compensation samples/fly 20x.bmp')
 ui.imageShow(hologram, 'Hologram')
 
 # Numerical compensation using the CFS approach
-output = pc.CFS(hologram, 0.532, 2.4, 2.4, False)
+output = pc.CFS(hologram, 0.532, 2.4, 2.4)
 
 # Display the amplitude reconstruction
 amplitude = dis.amplitude(output, False)
@@ -76,8 +77,9 @@ phase = dis.phase(output)
 ui.imageShow(phase, 'Phase reconstruction')
 '''
 
+'''
 # CNT example
-
+print ("CNT example")
 # Load the hologram
 hologram = ui.imageRead('data/compensation samples/holonotele_fly-resize.png')
 # ui.imageShow(hologram, 'Hologram')
@@ -96,12 +98,10 @@ output = pc.CNT(hologram, 0.633, 7, 7, 200, 287, 180, 267, 4200, 5, 1)
 phase = dis.phase(output)
 ui.imageShow(phase, 'Phase reconstruction')
 
-
 #phase_unw = np.apply_over_axes(np.unwrap, phase, np.arange(len(phase.shape)))
 #phase_unw = np.unwrap(phase, discont=None, axis=- 1, period=3.143185307179586)
 #ui.imageShow(phase_unw, 'phase_unw')
-
-
+'''
 
 # for the propagation
 '''
@@ -114,7 +114,7 @@ for i in range(0, 10000, 1000):
     out = dis.amplitude(complexfield, False)
 
     # Display a gray-value image with the given title
-    ui.imageShow(out, 'Propagated image_' + str(i) + ' mm')
+    ui.imageShow(out, 'Propagated amplitude image_' + str(i) + ' mm')
 
     # This function calculates the amplitude representation of a given complex field
     out = dis.phase(complexfield)
