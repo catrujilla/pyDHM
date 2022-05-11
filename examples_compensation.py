@@ -1,5 +1,5 @@
 """
-Title-->            Off-axis numerical reconstruction example.
+Title-->            Slightly off-axis numerical phase compensation examples.
 Author-->           Carlos Trujillo, Ana Doblas, and Raul Castaneda
 Date-->             11/04/2022
 Groups-->           University of Memphis -  Optical Imaging Research laboratory (OIRL)
