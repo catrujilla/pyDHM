@@ -1,7 +1,7 @@
 pyDHM
 =============
 
-An open-source Python library to numerically recover the complex wavefield information of samples from Digital Holographic Microscopy (DHM) for a wide variety of experimental recording possibilities. Among others, the library includes:
+An open-source Python library to numerically recover the complex wavefield information of samples from Digital Holographic Microscopy (DHM) for a wide variety of experimental recording configurations. Among others, the library includes:
 
 - Phase retrieval from image-plane and non-image-plane recordings.
 - Numerical propagation of wavefields via three different propagators (Angular spectrum approach, Fresnel transform, and Fresnel-Bluestein transform).
@@ -11,11 +11,11 @@ An open-source Python library to numerically recover the complex wavefield infor
 
 Three sample scripts are provided using the library functions:
 
-- The “example_numericalPropagation.py” script includes examples of the use of the three numerical propagators implemented in the library to focus DHM reconstructions.
+- The “example_numericalPropagation.py” script includes examples of the use of the three numerical propagators implemented in the library to digitally focus complex wavefields.
 - The “examples_compensation.py” script includes examples of the use of the three compensation methods for telecentric off-axis DHM holograms and one example of the non-telecentric wavefield compensation.
 - The “examples_phaseShitting.py” script includes examples of the use of two phase-shifting retrieval methods for slightly off-axis DHM holograms and three phase-shifting retrieval methods for in-line setups.
 
-The library has been envisioned, designed, and implemented by the Optical Imaging Research laboratory (OIRL) from the University of Memphis and the Applied Optics research group of Universidad EAFIT. The main contributors to the library are:
+The library has been envisioned, designed, and implemented by the Optical Imaging Research laboratory (OIRL) from the University of Memphis and the Applied Optics research group from Universidad EAFIT. The main contributors to the library are:
 
 PhD candidate Raúl Castañeda-Sepulveda (University of Memphis)
 
