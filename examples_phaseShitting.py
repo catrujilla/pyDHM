@@ -9,110 +9,108 @@ Links-->            More information about the library can be found on the websi
                     https://github.com/catrujilla/pyDHM         -
 """
 
-import utilities._init_ as ui
-import phaseShifting.phaseShifting as ps
-import utilities.display as dis
-
+from pyDHM import utilities
+from pyDHM import phaseShifting
 
 # Phase shifting using the SOSR approach
 '''
 print ("SOSR example")
 # Load the holograms
-inp0 = ui.imageRead('data/phase-shifting samples/cut_samples/I0_Fresnel_Lens.bmp')
-inp1 = ui.imageRead('data/phase-shifting samples/cut_samples/I1_Fresnel_Lens.bmp')
-inp2 = ui.imageRead('data/phase-shifting samples/cut_samples/I2_Fresnel_Lens.bmp')
-inp3 = ui.imageRead('data/phase-shifting samples/cut_samples/I3_Fresnel_Lens.bmp')
+inp0 = utilities.imageRead('data/phase-shifting samples/cut_samples/I0_Fresnel_Lens.bmp')
+inp1 = utilities.imageRead('data/phase-shifting samples/cut_samples/I1_Fresnel_Lens.bmp')
+inp2 = utilities.imageRead('data/phase-shifting samples/cut_samples/I2_Fresnel_Lens.bmp')
+inp3 = utilities.imageRead('data/phase-shifting samples/cut_samples/I3_Fresnel_Lens.bmp')
 
 # Phase shifting using the SOSR approach
-output = ps.SOSR(inp0, inp1, inp2, inp3, True, 632.8e-9, 6.9e-6, 6.9e-6, 1, 4)
+output = phaseShifting.SOSR(inp0, inp1, inp2, inp3, True, 632.8e-9, 6.9e-6, 6.9e-6, 1, 4)
 
 # Display the amplitude reconstruction
-amplitude = dis.amplitude(output, False)
-ui.imageShow(amplitude, 'Amplitude reconstruction')
+amplitude = utilities.amplitude(output, False)
+utilities.imageShow(amplitude, 'Amplitude reconstruction')
 
 # Display the phase reconstruction
-phase = dis.phase(output)
-ui.imageShow(phase, 'Phase reconstruction')
+phase = utilities.phase(output)
+utilities.imageShow(phase, 'Phase reconstruction')
 '''
 
 # Phase shifting via ps5-inline
 '''
 print ("ps5-inline example")
-inp0 = ui.imageRead('data/phase-shifting samples/PS5/h1_PS5.png')
-inp1 = ui.imageRead('data/phase-shifting samples/PS5/h2_PS5.png')
-inp2 = ui.imageRead('data/phase-shifting samples/PS5/h3_PS5.png')
-inp3 = ui.imageRead('data/phase-shifting samples/PS5/h4_PS5.png')
-inp4 = ui.imageRead('data/phase-shifting samples/PS5/h5_PS5.png')
+inp0 = utilities.imageRead('data/phase-shifting samples/PS5/h1_PS5.png')
+inp1 = utilities.imageRead('data/phase-shifting samples/PS5/h2_PS5.png')
+inp2 = utilities.imageRead('data/phase-shifting samples/PS5/h3_PS5.png')
+inp3 = utilities.imageRead('data/phase-shifting samples/PS5/h4_PS5.png')
+inp4 = utilities.imageRead('data/phase-shifting samples/PS5/h5_PS5.png')
 
 # Phase shifting via ps5 ()
-output = ps.PS5(inp0, inp1, inp2, inp3, inp4)
+output = phaseShifting.PS5(inp0, inp1, inp2, inp3, inp4)
 
 # Display the phase reconstruction
-ui.imageShow(output, 'Phase reconstruction')
+utilities.imageShow(output, 'Phase reconstruction')
 '''
 
 # Phase shifting via ps4-inline
 '''
 print ("ps4-inline example")
-inp0 = ui.imageRead('data/phase-shifting samples/PS4/h1-PS4.png')
-inp1 = ui.imageRead('data/phase-shifting samples/PS4/h2-PS4.png')
-inp2 = ui.imageRead('data/phase-shifting samples/PS4/h3-PS4.png')
-inp3 = ui.imageRead('data/phase-shifting samples/PS4/h4-PS4.png')
+inp0 = utilities.imageRead('data/phase-shifting samples/PS4/h1-PS4.png')
+inp1 = utilities.imageRead('data/phase-shifting samples/PS4/h2-PS4.png')
+inp2 = utilities.imageRead('data/phase-shifting samples/PS4/h3-PS4.png')
+inp3 = utilities.imageRead('data/phase-shifting samples/PS4/h4-PS4.png')
 
 # Phase shifting via ps4 ()
-output = ps.PS4(inp0, inp1, inp2, inp3)
+output = phaseShifting.PS4(inp0, inp1, inp2, inp3)
 
 # Display the phase reconstruction
-ui.imageShow(output, 'Phase reconstruction')
+utilities.imageShow(output, 'Phase reconstruction')
 '''
 
 # Phase shifting via ps3-inline
 '''
 print ("ps3-inline example")
-inp0 = ui.imageRead('data/phase-shifting samples/PS3/h1_PS3.png')
-inp1 = ui.imageRead('data/phase-shifting samples/PS3/h2_PS3.png')
-inp2 = ui.imageRead('data/phase-shifting samples/PS3/h3_PS3.png')
+inp0 = utilities.imageRead('data/phase-shifting samples/PS3/h1_PS3.png')
+inp1 = utilities.imageRead('data/phase-shifting samples/PS3/h2_PS3.png')
+inp2 = utilities.imageRead('data/phase-shifting samples/PS3/h3_PS3.png')
 
 # Phase shifting via ps3 ()
-output = ps.PS3(inp0, inp1, inp2)
+output = phaseShifting.PS3(inp0, inp1, inp2)
 
 # Display the phase reconstruction
-ui.imageShow(output, 'Phase reconstruction')
+utilities.imageShow(output, 'Phase reconstruction')
 '''
 
-'''
 # three blind raw Holograms
+'''
 print ("BPS3 example")
 # Load the holograms
-inp0 = ui.imageRead('data/phase-shifting samples/usaf_1_cut.jpg')
-inp1 = ui.imageRead('data/phase-shifting samples/usaf_2_cut.jpg')
-inp2 = ui.imageRead('data/phase-shifting samples/usaf_3_cut.jpg')
+inp0 = utilities.imageRead('data/phase-shifting samples/usaf_1_cut.jpg')
+inp1 = utilities.imageRead('data/phase-shifting samples/usaf_2_cut.jpg')
+inp2 = utilities.imageRead('data/phase-shifting samples/usaf_3_cut.jpg')
 
-ui.imageShow(inp0, 'Hologram 1')
-ui.imageShow(inp0, 'Hologram 2')
-ui.imageShow(inp0, 'Hologram 3')
+utilities.imageShow(inp0, 'Hologram 1')
+utilities.imageShow(inp0, 'Hologram 2')
+utilities.imageShow(inp0, 'Hologram 3')
 
 # Phase shifting via BPS3 (three holograms slightly off-axis)
-output = ps.BPS3(inp2, inp1, inp0, 0.532, 2.4, 2.4)
+output = phaseShifting.BPS3(inp2, inp1, inp0, 0.532, 2.4, 2.4)
 
 # Display the phase reconstruction
-phase = dis.phase(output)
-ui.imageShow(phase, 'Phase reconstruction')
+phase = utilities.phase(output)
+utilities.imageShow(phase, 'Phase reconstruction')
 '''
 
 # two blind raw Holograms
 '''
 print ("BPS2 example")
 # Load the holograms
-#inp0 = ui.imageRead('data/phase-shifting samples/Neuron_1.jpg')
-#inp1 = ui.imageRead('data/phase-shifting samples/Neuron_3.jpg')
-inp0 = ui.imageRead('data/phase-shifting samples/usaf_1_cut.jpg')
-inp1 = ui.imageRead('data/phase-shifting samples/usaf_2_cut.jpg')
+#inp0 = utilities.imageRead('data/phase-shifting samples/Neuron_1.jpg')
+#inp1 = utilities.imageRead('data/phase-shifting samples/Neuron_3.jpg')
+inp0 = utilities.imageRead('data/phase-shifting samples/usaf_1_cut.jpg')
+inp1 = utilities.imageRead('data/phase-shifting samples/usaf_2_cut.jpg')
 
 # Phase shifting via BPS2 (two holograms slighlty off-axis)
-output = ps.BPS2(inp1, inp0, 0.532, 2.4, 2.4)
+output = phaseShifting.BPS2(inp1, inp0, 0.532, 2.4, 2.4)
 
 # Display the phase reconstruction
-phase = dis.phase(output)
-ui.imageShow(phase, 'Phase reconstruction')
+phase = utilities.phase(output)
+utilities.imageShow(phase, 'Phase reconstruction')
 '''
