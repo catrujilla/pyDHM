@@ -25,12 +25,15 @@ Three sample scripts are provided:
 - The “examples_compensation.py” script includes examples of the use of the three compensation methods for telecentric off-axis DHM holograms and one example of the non-telecentric wavefield compensation.
 - The “examples_phaseShitting.py” script includes examples of the use of two phase-shifting retrieval methods for slightly off-axis DHM holograms and three phase-shifting retrieval methods for in-line setups.
 
+More on the use of the pyDHM library can be found in the following academic paper:
+R. Castañeda-Sepulveda, C. Trujillo and A. Doblas "pyDHM: A Python library for applications in Digital Holographic Microscopy", to be submitted to plosONE, 2022.
+
 ## About us
 
 The library has been envisioned, designed, and implemented by the Optical Imaging Research laboratory (OIRL) from the University of Memphis and the Applied Optics research group from Universidad EAFIT. The main contributors to the library are:
 
-PhD candidate Raúl Castañeda-Sepulveda (University of Memphis)
+PhD candidate Raúl Castañeda-Sepulveda (University of Memphis) rcstdqnt@memphis.edu
 
-Professor Dr. Ana Doblas (University of Memphis)
+Professor Dr. Ana Doblas (University of Memphis) adoblas@memphis.edu
 
-Professor Dr. Carlos Trujillo (Universidad EAFIT)
+Professor Dr. Carlos Trujillo (Universidad EAFIT) catrujilla@eafit.edu.co
