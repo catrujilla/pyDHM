@@ -13,7 +13,7 @@ An open-source Python library to numerically recover the complex wavefield infor
 
 You can install pyDHM from [PyPI](https://pypi.org/project/pyDHM/):
 
-    python -m pip install pyDHM
+    pip install pyDHM
 
 pyDHM is supported on Python 3.7 and above.
 
