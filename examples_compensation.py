@@ -33,7 +33,7 @@ utilities.imageShow(phase, 'Phase reconstruction')
 '''
 
 # ERS example
-
+'''
 print ("ERS example")
 # Load the hologram
 #hologram = utilities.imageRead('data/compensation samples/star-target.png')
@@ -51,7 +51,7 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-
+'''
 
 # CFS example
 '''
@@ -91,10 +91,6 @@ output = phaseCompensation.CNT(hologram, 0.633, 7, 7, 200, 287, 180, 267, 4200, 
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-
-#phase_unw = np.apply_over_axes(np.unwrap, phase, np.arange(len(phase.shape)))
-#phase_unw = np.unwrap(phase, discont=None, axis=- 1, period=3.143185307179586)
-#utilities.imageShow(phase_unw, 'phase_unw')
 '''
 
 # for the propagation
