@@ -26,6 +26,7 @@ Three sample scripts are provided:
 - The “examples_phaseShitting.py” script includes examples of the use of two phase-shifting retrieval methods for slightly off-axis DHM holograms and three phase-shifting retrieval methods for in-line setups.
 
 More on the use of the pyDHM library can be found in the following academic paper:
+
 R. Castañeda-Sepulveda, C. Trujillo and A. Doblas "pyDHM: A Python library for applications in Digital Holographic Microscopy", to be submitted to plosONE, 2022.
 
 ## About us
