@@ -33,7 +33,7 @@ R. Castañeda-Sepulveda, C. Trujillo and A. Doblas "pyDHM: A Python library for 
 
 The library has been envisioned, designed, and implemented by the Optical Imaging Research laboratory (OIRL) from the University of Memphis and the Applied Optics research group from Universidad EAFIT. The main contributors to the library are:
 
-PhD candidate Raúl Castañeda-Sepulveda (University of Memphis) rcstdqnt@memphis.edu
+PhD candidate Raúl Castañeda-Quintero (University of Memphis) rcstdqnt@memphis.edu
 
 Professor Dr. Ana Doblas (University of Memphis) adoblas@memphis.edu
 
