@@ -16,7 +16,8 @@ import numpy as np
 import math
 from math import pi
 from scipy.optimize import minimize
-
+import sys
+import cv2
 
 def SOSR(inp0, inp1, inp2, inp3, upper, wavelength, dx, dy, s=1, steps=4):
     '''
@@ -29,6 +30,10 @@ def SOSR(inp0, inp1, inp2, inp3, upper, wavelength, dx, dy, s=1, steps=4):
     # wavelength - Wavelength of the illumination source to register the DHM hologram
     # dx, dy - Pixel dimensions of the camera sensor used for recording the holograms
     '''
+
+    if steps < s:
+        print('Please, Enter a steps value bigger than s')
+        sys.exit()
 
     # Retrieving the input shape
 
@@ -150,6 +155,10 @@ def BPS2(Inp0, Inp1, wavelength, dx, dy):
     # dx, dy- Pixel dimensions of the camera sensor used for recording the holograms
     '''
 
+    if scipy.__version__ == None:
+        print('Please, install scipy library and import minimize function')
+        sys.exit()
+
     # retrieving the input shape
     inp = np.array(Inp0)
     M, N = inp.shape
@@ -223,6 +232,11 @@ def BPS3(Inp0, Inp1, Inp2, wavelength, dx, dy):
     # wavelength - Wavelength of the illumination source to register the DHM hologram
     # dx, dy - Pixel dimensions of the camera sensor used for recording the hologram
     '''
+    
+    if scipy.__version__ == None:
+        print('Please, install scipy library and import minimize function')
+        sys.exit()
+
 
     # Retrieving the input shape
     inp = np.array(Inp0)
@@ -297,6 +311,12 @@ def PS5(Inp0, Inp1, Inp2, Inp3, Inp4):
     # Inputs:
     # inpX - The input intensities (captured) pi/2 phase-shifted holograms
     '''
+    
+    # determine if the hologram is on-axis
+    ret, thresh = regime(Inp0)
+    if ret != 1:
+        print('PS5 require on-axis holograms')
+        sys.exit()
 
     # Retrieving the input shape
     inp0 = np.array(Inp0)
@@ -319,6 +339,13 @@ def PS4(Inp0, Inp1, Inp2, Inp3):
     # Inputs:
     # inpX - The input intensities (captured) pi/2 phase-shifted holograms
     '''
+    
+    # determine if the hologram is on-axis
+    ret, thresh = utilities.regime(Inp0)
+    if ret != 1:
+        print('PS4 require on-axis holograms')
+        sys.exit()
+
 
     # Retrieving the input shape
     inp0 = np.array(Inp0)
@@ -343,6 +370,12 @@ def PS3(Inp0, Inp1, Inp2):
     # inpX - The input intensities (captured) pi/3 phase-shifted holograms
     '''
 
+    # determine if the hologram is on-axis
+    ret, thresh = utilities.regime(Inp0)
+    if ret != 1:
+        print('PS3 require on-axis holograms')
+        sys.exit()
+
     # Retrieving the input shape
     inp0 = np.array(Inp0)
     inp1 = np.array(Inp1)
@@ -361,6 +394,36 @@ def PS3(Inp0, Inp1, Inp2):
 '''
 Auxiliary functions
 '''
+# Function to determine if the holograms is off-axis or not
+def regime(inp):
+    holoFT = np.float32(inp)
+    fft_holo = cv2.dft(holoFT, flags=cv2.DFT_COMPLEX_OUTPUT)
+    fft_holo = np.fft.fftshift(fft_holo)
+    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1])) 
+    minVal = np.amin(np.abs(fft_holo_image))
+    maxVal = np.amax(np.abs(fft_holo_image))
+    fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
+                                         beta=-minVal * 255.0 / (maxVal - minVal))
+
+    # apply binary thresholding
+    ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
+    #cv2.imshow('Binary image', thresh)
+    thresh_rize = cv2.resize(thresh, (1024, 1024))
+    cv2.imshow('Binary image_resize', thresh_rize)
+    cv2.waitKey(0)
+
+
+    contours, hierarchy = cv2.findContours(image=thresh_rize, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_SIMPLE)
+    # draw contours on the original image
+    fft_holo_image = cv2.resize(thresh, (1024, 1024))
+    image_copy = fft_holo_image.copy()
+    cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2,
+                     lineType=cv2.LINE_AA)
+    cv2.imshow('None approximation', image_copy)
+    cv2.waitKey(0)
+    print(len(contours))
+    return ret, thresh
+
 
 # Function to calculate the intensity representation of a given complex field
 def intensity(inp, log):

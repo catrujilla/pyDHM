@@ -12,13 +12,15 @@ Abstract -->        Script that implements the different methods to render the r
 Links-->          - https://unal-optodigital.github.io/JDiffraction/
 """
 
+import cv2
+import sys
 import numpy as np
 from matplotlib import pyplot as plt
 from PIL import Image, ImageOps
 from scipy import ndimage
 
 # circular spatial filter
-def sfc(field, radius, centX, centY):
+def sfc(field, radius, centX, centY, display):
     """
     # Function to create a spatial filter with a circle mask
     # Inputs:
@@ -26,6 +28,8 @@ def sfc(field, radius, centX, centY):
     # radius - dimension of the radius for the circle
     # centX - center circle position in x axis
     # centY - center circle position in y axis
+    # display - boolean variable to visualize the FT spatial filter
+
     """
     field = np.array(field)
     M, N = field.shape
@@ -48,6 +52,10 @@ def sfc(field, radius, centX, centY):
     FT = np.fft.fftshift(FT)
     filter = FT * mask
 
+    if (display == True):
+        holo_filter_display = intensity(filter, True)
+        imageShow(holo_filter_display, 'Spatial filter')
+
     min1X = int(N / 2 - (maxX - minX) / 2)
     max1X = int(N / 2 + (maxX - minX) / 2)
     min1Y = int(M / 2 - (maxY - minY) / 2)
@@ -67,9 +75,8 @@ def sfc(field, radius, centX, centY):
 
     return field
 
-
 # rectangular spatial filter
-def sfr(field, x1, x2, y1, y2):
+def sfr(field, x1, x2, y1, y2, display):
     """
     # Function to create a spatial filter with a rectangle mask
     # Inputs:
@@ -78,6 +85,7 @@ def sfr(field, x1, x2, y1, y2):
     # y1 - Coordinate y1 for the rectangle (upper left corner)
     # x2 - Coordinate x2 for the rectangle (lower right corner)
     # y2 - Coordinate y2 for the rectangle (lower right corner)
+    # display - boolean variable (True or False) to visualize the FT spatial filter
     """
     field = np.array(field)
     M, N = field.shape
@@ -87,6 +95,10 @@ def sfr(field, x1, x2, y1, y2):
     FT = np.fft.fft2(field)
     FT = np.fft.fftshift(FT)
     filter = FT * mask
+
+    if (display == True):
+        holo_filter_display = intensity(filter, True)
+        imageShow(holo_filter_display, 'Spatial filter')
 
     minX = int(N / 2 - (x2 - x1) / 2)
     maxX = int(N / 2 + (x2 - x1) / 2)
@@ -105,6 +117,103 @@ def sfr(field, x1, x2, y1, y2):
     field = holoFilter
 
     return field
+
+# manual rectangular spatial filter
+def sfmr(field, display):
+    """
+    # Function to create a spatial filter with a rectangle mask
+    # Inputs:
+    # field - The field to be filtered
+    # display - boolean variable (True or False) to visualize the FT spatial filter
+    """
+
+    if cv2.__version__ == None:
+        print('Please, install openCV library in your computer before to use the sfmr function')
+        sys.exit()
+
+    print('select with the cursor mouse the region where you want to perform the spatial filtering and press the enter key')
+
+
+    field = np.array(field)
+    M, N = field.shape
+
+    ROI_arrray = np.zeros(4)
+    holoFT = np.float32(field)
+    fft_holo = cv2.dft(holoFT, flags=cv2.DFT_COMPLEX_OUTPUT)
+    fft_holo = np.fft.fftshift(fft_holo)
+    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1]))
+    minVal = np.amin(np.abs(fft_holo_image))
+    maxVal = np.amax(np.abs(fft_holo_image))
+    fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
+                                         beta=-minVal * 255.0 / (maxVal - minVal))
+
+    ROI = cv2.selectROI(fft_holo_image, fromCenter=True)
+    x1_ROI = int(ROI[1])
+    y1_ROI = int(ROI[0])
+    x2_ROI = int(ROI[1] + ROI[3])
+    y2_ROI = int(ROI[0] + ROI[2])
+    ROI_arrray[0] = x1_ROI
+    ROI_arrray[1] = y1_ROI
+    ROI_arrray[2] = x2_ROI
+    ROI_arrray[3] = y2_ROI
+
+    holo_filter = np.zeros((M, N, 2))
+    holo_filter[x1_ROI:x2_ROI, y1_ROI: y2_ROI] = 1
+    holo_filter = holo_filter * fft_holo
+
+    if (display == True):
+        holo_filter_real = holo_filter[:, :, 0]
+        holo_filter_imag = holo_filter[:, :, 1]
+        holo_filter_display = np.zeros((M, N), complex)
+        for p in range(M):
+            for q in range(N):
+                holo_filter_display[p, q] = complex(holo_filter_real[p, q], holo_filter_imag[p, q])
+
+        holo_filter_display = intensity(holo_filter_display, True)
+        imageShow(holo_filter_display, 'Spatial filter')
+
+    holo_filter = np.fft.ifftshift(holo_filter)
+    holo_filter = cv2.idft(holo_filter, flags=cv2.DFT_INVERSE)
+
+    holo_filter_real = holo_filter[:, :, 0]
+    holo_filter_imag = holo_filter[:, :, 1]
+    holo_filter = np.zeros((M, N), complex)
+    for p in range(M):
+        for q in range(N):
+            holo_filter[p, q] = complex(holo_filter_real[p, q], holo_filter_imag[p, q])
+
+    # return Xcenter, Ycenter, holo_filter, ROI_arrray
+    return holo_filter
+
+# Function to determine if the holograms is off-axis or not
+def regime(inp):
+    holoFT = np.float32(inp)
+    fft_holo = cv2.dft(holoFT, flags=cv2.DFT_COMPLEX_OUTPUT)
+    fft_holo = np.fft.fftshift(fft_holo)
+    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1])) 
+    minVal = np.amin(np.abs(fft_holo_image))
+    maxVal = np.amax(np.abs(fft_holo_image))
+    fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
+                                         beta=-minVal * 255.0 / (maxVal - minVal))
+
+    # apply binary thresholding
+    ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
+    #cv2.imshow('Binary image', thresh)
+    thresh_rize = cv2.resize(thresh, (1024, 1024))
+    cv2.imshow('Binary image_resize', thresh_rize)
+    cv2.waitKey(0)
+
+
+    contours, hierarchy = cv2.findContours(image=thresh_rize, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_SIMPLE)
+    # draw contours on the original image
+    fft_holo_image = cv2.resize(thresh, (1024, 1024))
+    image_copy = fft_holo_image.copy()
+    cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2,
+                     lineType=cv2.LINE_AA)
+    cv2.imshow('None approximation', image_copy)
+    cv2.waitKey(0)
+    print(len(contours))
+    return ret, thresh
     
 def HM2F(inp, kernel, figures, plots):
     if kernel % 2 == 0:

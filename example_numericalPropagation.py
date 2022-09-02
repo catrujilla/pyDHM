@@ -28,7 +28,7 @@ ft_holo = utilities.intensity(ft_holo, True)
 utilities.imageShow(ft_holo, 'FT hologram')
 
 # Spatial filter
-filter = utilities.sfc(inp, 160, 303, 276)
+filter = utilities.sfmr(inp, True)
 
 # Numerical propagation using the angular spectrum
 output = numericalPropagation.angularSpectrum(filter, 70000, 0.633, 6.9, 6.9)
@@ -60,7 +60,7 @@ ft_holo = utilities.intensity(ft_holo, True)
 utilities.imageShow(ft_holo, 'FT hologram')
 
 # Spatial filter
-filter = utilities.sfr(inp, 74, 500, 54, 450)
+filter = utilities.sfmr(inp, True)
 
 # Numerical propagation using the Fresnel transforms
 output = numericalPropagation.fresnel(filter, -450, 0.000633, 0.005000, 0.005000)
@@ -88,7 +88,7 @@ ft_holo = utilities.intensity(ft_holo, True)
 utilities.imageShow(ft_holo, 'FT hologram')
 
 # Spatial filter
-filter = utilities.sfr(inp, 280, 500, 150, 340)
+filter = utilities.sfmr(inp, True)
 
 # Numerical propagation using the Fresnel transforms
 output = numericalPropagation.bluestein(filter - np.average(filter), 30/100, 632.8e-9, 7e-6, 7e-6, 4.5e-5, 4.5e-5)

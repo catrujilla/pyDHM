@@ -54,7 +54,7 @@ utilities.imageShow(phase, 'Phase reconstruction')
 '''
 
 # CFS example
-'''
+
 print ("CFS example")
 # Load the hologram
 #hologram = utilities.imageRead('data/compensation samples/hologram EAFIT.jpg')
@@ -71,7 +71,7 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-'''
+
 
 # CNT example
 '''
@@ -86,7 +86,7 @@ ft_holo = utilities.intensity(ft_holo, True)
 #utilities.imageShow(ft_holo, 'FT hologram')
 
 # Numerical compensation using the CNT approach
-output = phaseCompensation.CNT(hologram, 0.633, 7, 7, 200, 287, 180, 267, 4200, 5, 1)
+output = phaseCompensation.CNT(hologram, 0.633, 7, 7, spatialFilter='sfmr', s=1, step=0.1)
 
 # Display the phase reconstruction
 phase = utilities.phase(output)

@@ -20,6 +20,9 @@ import math
 from matplotlib import pyplot as plt
 from math import pi
 from scipy.optimize import minimize
+import scipy
+import sys
+import cv2
 
 def FRS(inp, upper, wavelength, dx, dy, s=5, step=0.2):
     '''
@@ -31,6 +34,15 @@ def FRS(inp, upper, wavelength, dx, dy, s=5, step=0.2):
     # dx, dy - Pixel dimensions of the camera sensor used for recording the hologram
     # s = 2 and steps = 10
     '''
+    if step > s:
+        print('Please, Enter a step value smaller than s')
+        sys.exit()
+
+    # determine if the hologram is off-axis
+    ret, thresh = regime(inp)
+    if ret < 3:
+        print('FRS require an off-axis hologram')
+        sys.exit()
 
     # Retrieving the input shape
     inp = inp - np.average(inp)
@@ -110,6 +122,15 @@ def ERS(inp, upper, wavelength, dx, dy, s, step):
     # dx, dy - Pixel dimensions of the camera sensor used for recording the hologram
     # s = 5 and step = 0.2
     '''
+    if step > s:
+        print('Please, Enter a step value smaller than s')
+        sys.exit()
+
+    # determine if the hologram is off-axis
+    ret, thresh = regime(inp)
+    if ret < 3:
+        print('ERS requires an off-axis hologram')
+        sys.exit()
 
     # Retrieving the input shape
     inp = inp - np.average(inp)
@@ -220,6 +241,16 @@ def CFS(inp, wavelength, dx, dy):
     # wavelength - Wavelength of the illumination source to register the DHM hologram
     # dx, dy - Pixel dimensions of the camera sensor used for recording the hologram
     '''
+    
+    if scipy.__version__ == None:
+        print('Please, install scipy.optimize library and import minimize function')
+        sys.exit()
+
+    # determine if the hologram is off-axis
+    ret, thresh = regime(inp)
+    if ret < 3:
+        print('CFS requires an off-axis hologram')
+        sys.exit()
 
     # Retrieving the input shape
     inp = np.array(inp)
@@ -281,148 +312,212 @@ def CFS(inp, wavelength, dx, dy):
     return comp_phase
 
 
-def CNT(inp, wavelength, dx, dy, x1, x2, y1, y2, cur, s, step):
+def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilter=None, s=None, step=None):
     '''
     # Function to compensate phase maps of image plane off-axis DHM, operating in non-telecentric regimen
     # Inputs:
     # inp - The input intensity (captured) hologram
     # wavelength - Wavelength of the illumination source to register the DHM hologram
     # dx, dy - Pixel dimensions of the camera sensor used for recording the hologram
+    # x1 - Coordinate x1 for the rectangle (upper left corner)
+    # y1 - Coordinate y1 for the rectangle (upper left corner)
+    # x2 - Coordinate x2 for the rectangle (lower right corner)
+    # y2 - Coordinate y2 for the rectangle (lower right corner)
+    # spatialFilter - The approach to compute the spatial filter, two options available sfr and sfmr
     '''
+
+    wavelength = wavelength * 0.000001
+    dx = dx * 0.000001
+    dy = dy * 0.000001
 
     # Retrieving the input shape
     inp = np.array(inp)
     M, N = inp.shape
     k = (2 * math.pi) / wavelength
 
-
     # Creating a mesh-grid to operate in world coordinates
     x = np.arange(0, N, 1)  # array x
     y = np.arange(0, M, 1)  # array y
     X, Y = np.meshgrid(x - (N / 2), y - (M / 2), indexing='xy')  # meshgrid XY
 
+    # The spatial filtering process is executed
+    print("Spatial filtering process started.....")
+    if x1 is None and x2 is None and y1 is None and y2 is None:
+        if spatialFilter == 'sfmr':
+            Xcenter, Ycenter, holo_filter, ROI_array = pci.spatialFilterinCNT(inp, M, N)
+        else:
+            print("Please, indicate as option for the spatialFilter: 'sfmr' ")
+            sys.exit()
+    else:
+        if spatialFilter == 'sfr':
+            Xcenter, Ycenter, holo_filter, ROI_array = pci.spatialFilterinCNT_II(inp, M, N, x1, y1, x2, y2)
+        else:
+            print("Please, indicate as option for the spatialFilter: 'sfr' or introduce the rectangle coordinates")
+            sys.exit()
+    print("Spatial filtering process finished.")
 
-    # Fourier transform of the hologram
-    FT = np.fft.fft2(inp)
-    FT = np.fft.fftshift(FT)
-    FT_display = intensity(FT, True)
-
-
-    # Normalization of the Fourier transform
-    minVal = np.amin(FT_display)
-    maxVal = np.amax(FT_display)
-    FT_normalized = (FT_display - minVal) / (maxVal - minVal)
-    binary_FT = (FT_normalized > 0.6)
-    imageShow(binary_FT, 'FT binirezed')
-
-
-    # Filter to find the X_center and Y_center
-    mask = np.zeros((M, N))
-    mask[y1:y2, x1:x2] = 1
-    filter = binary_FT * mask
-    #imageShow(filter, 'FT Filter')
-
-
-    # X_center and Y_center
-    Xmoment = 0
-    Ymoment = 0
-    Xaverage = 0
-    Yaverage = 0
-    for p in range(0, M):
-        for q in range(0, N):
-            Xmoment = Xmoment + filter[p, q] * q
-            Xaverage = Xaverage + filter[p, q]
-            Ymoment = Ymoment + filter[p, q] * p
-            Yaverage = Yaverage + filter[p, q]
-    Xcenter = Xmoment/Xaverage
-    Ycenter = Ymoment/Yaverage
-
+    # Fourier transform to the hologram filtered
+    ft_holo = dis.FT(holo_filter)
+    FT_display = dis.intensity(ft_holo, False)
+    ui.imageShow(FT_display, 'FT Filtered')
 
     # reference wave for the first compensation (global linear compensation)
     ThetaXM = math.asin((N / 2 - Xcenter) * wavelength / (M * dx))
     ThetaYM = math.asin((M / 2 - Ycenter) * wavelength / (N * dy))
     reference = np.exp(1j * k * (math.sin(ThetaXM) * X * dx + math.sin(ThetaYM) * Y * dy))
 
-
-    # spatial filter
-    mask = np.zeros((M, N))
-    mask[y1 - 20:y2 + 20, x1 - 20:x2 + 20] = 1
-    filter = FT * mask
-    holo_filter = np.fft.ifftshift(filter)
-    holo_filter = np.fft.ifft2(holo_filter)
-
-
     # First compensation
     comp_phase = holo_filter * reference
+    phase = dis.phase(comp_phase)
+
+    # show the first compensation
+    minVal = np.amin(phase)
+    maxVal = np.amax(phase)
+    phase_normalized = (phase - minVal) / (maxVal - minVal)
+    binary_phase = (phase_normalized > 0.2)
+    ui.imageShow(binary_phase, 'Binarized phase')
 
 
-    # Binarization
-    minVal = np.amin(comp_phase)
-    maxVal = np.amax(comp_phase)
-    phase_normalized = (comp_phase - minVal) / (maxVal - minVal)
-    binary_phase = (phase_normalized > 0.6)
-    imageShow(binary_phase, 'Binarized phase')
+    # creating the new reference wave to eliminate the circular phase factors
+    m = abs(ROI_array[2] - ROI_array[0])
+    n = abs(ROI_array[3] - ROI_array[1])
+    Cx = np.power((M * dx), 2)/(wavelength * m)
+    Cy = np.power((N * dy), 2)/(wavelength * n)
+    cur = (Cx + Cy)/2
 
 
-    # X_center and Y_center
-    Xmoment = 0
-    Ymoment = 0
-    Xaverage = 0
-    Yaverage = 0
-    for p in range(0, M):
-        for q in range(0, N):
-            Xmoment = Xmoment + binary_phase[p, q] * q
-            Xaverage = Xaverage + binary_phase[p, q]
-            Ymoment = Ymoment + binary_phase[p, q] * p
-            Yaverage = Yaverage + binary_phase[p, q]
-    Xcenter = Xmoment/Xaverage
-    Ycenter = Ymoment/Yaverage
+    p = input("Enter the pixel position X_cent for the center of circular phase map on x axis")
+    q = input("Enter the pixel position Y_cent for the center of circular phase map on y axis ")
+    f = ((M/2) - int(p))/2
+    g = ((N/2) - int(q))/2
+    print("Phase compensation started....")
 
-    p = input("Enter the pixel position on the x axis for the center of circular phase map ")
-    q = input("Enter the pixel position on the y axis for the center of circular phase map  ")
-    Xcenter = abs(M/2 - int(p))
-    Ycenter = abs(N/2 - int(q))
-    arrayXcenter = np.arange(Xcenter - s, Xcenter + s, step)
-    arrayYcenter = np.arange(Ycenter - s, Ycenter + s, step)
     cont = 0
     sum_max = 0
-    for Xcenter in arrayXcenter:
-         for Ycenter in arrayYcenter:
-            cont = cont + 1
-            spheMAP = np.exp(-1j * (np.power((X - Xcenter), 2) + np.power((Y - Ycenter), 2)) / cur)
-            phaseCompensate = comp_phase * spheMAP
-            phaseCompensate = np.angle(phaseCompensate)
-            #imageShow(phaseCompensate, 'phaseCompensate')
+    s = 100
+    step = 50
+    perc = 40/100
 
-            minVal = np.amin(phaseCompensate)
-            maxVal = np.amax(phaseCompensate)
-            phase_sca = (phaseCompensate - minVal) / (maxVal - minVal)
-            binary_phase = (phase_sca > 0.2)
-            #imageShow(binary_phase, 'phaseCompensate')
+    arrayCurvature = np.arange(cur - (cur*perc), cur + (cur*perc), perc/6)
+    arrayXcenter = np.arange(f - s, f + s, step)
+    arrayYcenter = np.arange(g - s, g + s, step)
+    for curTemp in arrayCurvature:
+        for fTemp in arrayXcenter:
+            for gTemp in arrayYcenter:
+                cont = cont + 1
+                phi_spherical = (np.power(X - fTemp, 2) * np.power(dx, 2) / curTemp) + (
+                np.power(Y - gTemp, 2) * np.power(dy, 2) / curTemp)
+                phi_spherical = math.pi * phi_spherical / wavelength
+                phi_spherical = np.exp(-1j * phi_spherical)
 
-            # Applying the summation and thresholding metric
-            sum = np.sum(np.sum(binary_phase))
-            if (sum > sum_max):
-                xCenter_out = Xcenter
-                yCenter_out = Ycenter
-                sum_max = sum
-                i = cont
+                phaseCompensate = comp_phase * phi_spherical
+                phaseCompensate = np.angle(phaseCompensate)
+                # ui.imageShow(phaseCompensate, 'phaseCompensate')
 
-    Xcenter = xCenter_out
-    Ycenter = yCenter_out
+                minVal = np.amin(phaseCompensate)
+                maxVal = np.amax(phaseCompensate)
+                phase_sca = (phaseCompensate - minVal) / (maxVal - minVal)
+                binary_phase = (phase_sca > 0.2)
+                # ui.imageShow(binary_phase, 'phaseCompensate')
 
-    spheMAP = np.exp(-1j * (np.power((X - Xcenter), 2) + np.power((Y - Ycenter), 2)) / cur)
-    phaseCompensate = comp_phase * spheMAP
+                # Applying the summation and thresholding metric
+                sum = np.sum(np.sum(binary_phase))
+                if (sum > sum_max):
+                    f_out = fTemp
+                    g_out = gTemp
+                    cur_out = curTemp
+                    sum_max = sum
+
+    #print("after first search ", f_out, g_out, cur_out)
+
+    cont = 0
+    sum_max = 0
+    s = 10
+    step = 2
+    perc = 0.1
+    arrayXcenter = np.arange(f_out - s, f_out + s, step)
+    arrayYcenter = np.arange(g_out - s, g_out + s, step)
+    arrayCurvature = np.arange(cur_out - (cur_out*perc), cur_out + (cur_out*perc), 0.01)
+    #arrayCurvature = np.arange(1.003, 1.03, 0.01)
+
+    for curTemp in arrayCurvature:
+        for fTemp in arrayXcenter:
+            for gTemp in arrayYcenter:
+                #print(curTemp)
+                cont = cont + 1
+                phi_spherical = (np.power(X - fTemp, 2) * np.power(dx, 2) / curTemp) + (
+                    np.power(Y - gTemp, 2) * np.power(dy, 2) / curTemp)
+                phi_spherical = math.pi * phi_spherical / wavelength
+                phi_spherical = np.exp(-1j * phi_spherical)
+
+                phaseCompensate = comp_phase * phi_spherical
+                phaseCompensate = np.angle(phaseCompensate)
+                #ui.imageShow(phaseCompensate, 'phaseCompensate')
+
+                minVal = np.amin(phaseCompensate)
+                maxVal = np.amax(phaseCompensate)
+                phase_sca = (phaseCompensate - minVal) / (maxVal - minVal)
+                binary_phase = (phase_sca > 0.2)
+                #ui.imageShow(binary_phase, 'phaseCompensate')
+
+                # Applying the summation and thresholding metric
+                sum = np.sum(np.sum(binary_phase))
+                #print(sum, curTemp)
+                if (sum > sum_max):
+                    f_out = fTemp
+                    g_out = gTemp
+                    cur_out = curTemp
+                    sum_max = sum
+
+    phi_spherical = (np.power(X - f_out, 2) * np.power(dx, 2) / cur_out) + (
+            np.power(Y - g_out, 2) * np.power(dy, 2) / cur_out)
+    phi_spherical = math.pi * phi_spherical / wavelength
+    phi_spherical = np.exp(-1j * phi_spherical)
+    phaseCompensate = comp_phase * phi_spherical
+
+    
+    #print("after fine compensation", f_out, g_out, cur_out)
+
+    print("Phase compensation finished.")
 
     return phaseCompensate
-
-
 
 
 
 '''
 Auxiliary functions
 '''
+
+# Function to determine if the holograms is off-axis or not
+def regime(inp):
+    holoFT = np.float32(inp)
+    fft_holo = cv2.dft(holoFT, flags=cv2.DFT_COMPLEX_OUTPUT)
+    fft_holo = np.fft.fftshift(fft_holo)
+    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1])) 
+    minVal = np.amin(np.abs(fft_holo_image))
+    maxVal = np.amax(np.abs(fft_holo_image))
+    fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
+                                         beta=-minVal * 255.0 / (maxVal - minVal))
+
+    # apply binary thresholding
+    ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
+    #cv2.imshow('Binary image', thresh)
+    thresh_rize = cv2.resize(thresh, (1024, 1024))
+    cv2.imshow('Binary image_resize', thresh_rize)
+    cv2.waitKey(0)
+
+
+    contours, hierarchy = cv2.findContours(image=thresh_rize, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_SIMPLE)
+    # draw contours on the original image
+    fft_holo_image = cv2.resize(thresh, (1024, 1024))
+    image_copy = fft_holo_image.copy()
+    cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2,
+                     lineType=cv2.LINE_AA)
+    cv2.imshow('None approximation', image_copy)
+    cv2.waitKey(0)
+    print(len(contours))
+    return ret, thresh
+
 
 # Function to display an image
 # Inputs:
