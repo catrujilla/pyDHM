@@ -68,6 +68,7 @@ output = phaseCompensation.CFS(hologram, 0.532, 2.4, 2.4)
 amplitude = utilities.amplitude(output, False)
 utilities.imageShow(amplitude, 'Amplitude reconstruction')
 
+
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
