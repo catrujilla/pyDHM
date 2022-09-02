@@ -289,7 +289,7 @@ def CFS(inp, wavelength, dx, dy):
 
     # minimization
     print("Minimization process started.....")
-    step = 1.5
+    step = 1
     res = minimize(costFunction, seeds, args=(M, N, holo_filter, wavelength, dx, dy, X, Y, fx_0, fy_0, k),
                    method='TNC', bounds=((seeds[0] - step, seeds[0] + step), (seeds[1] - step, seeds[1] + step)), tol=1e-3)
     print("Minimization process finished.")
@@ -297,9 +297,7 @@ def CFS(inp, wavelength, dx, dy):
     fy_max = res.x[1]
     print('x: ',fx_max)
     print('y: ',fy_max)
-    fx_max = fx_max - step
-    fy_max = fy_max - step
-
+    
     # Best phase compensation
     print("Phase compensation started....")
     theta_x = math.asin((fx_0 - fx_max) * wavelength / (M * dx))
@@ -503,8 +501,8 @@ def regime(inp):
     ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
     #cv2.imshow('Binary image', thresh)
     thresh_rize = cv2.resize(thresh, (1024, 1024))
-    cv2.imshow('Binary image_resize', thresh_rize)
-    cv2.waitKey(0)
+    #cv2.imshow('Binary image_resize', thresh_rize)
+    #cv2.waitKey(0)
 
 
     contours, hierarchy = cv2.findContours(image=thresh_rize, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_SIMPLE)
@@ -513,9 +511,9 @@ def regime(inp):
     image_copy = fft_holo_image.copy()
     cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2,
                      lineType=cv2.LINE_AA)
-    cv2.imshow('None approximation', image_copy)
-    cv2.waitKey(0)
-    print(len(contours))
+    #cv2.imshow('None approximation', image_copy)
+    #cv2.waitKey(0)
+    #print(len(contours))
     return ret, thresh
 
 

@@ -200,8 +200,8 @@ def regime(inp):
     ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
     #cv2.imshow('Binary image', thresh)
     thresh_rize = cv2.resize(thresh, (1024, 1024))
-    cv2.imshow('Binary image_resize', thresh_rize)
-    cv2.waitKey(0)
+    #cv2.imshow('Binary image_resize', thresh_rize)
+    #cv2.waitKey(0)
 
 
     contours, hierarchy = cv2.findContours(image=thresh_rize, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_SIMPLE)
@@ -210,9 +210,9 @@ def regime(inp):
     image_copy = fft_holo_image.copy()
     cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2,
                      lineType=cv2.LINE_AA)
-    cv2.imshow('None approximation', image_copy)
-    cv2.waitKey(0)
-    print(len(contours))
+    #cv2.imshow('None approximation', image_copy)
+    #cv2.waitKey(0)
+    #print(len(contours))
     return ret, thresh
     
 def HM2F(inp, kernel, figures, plots):
