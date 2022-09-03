@@ -17,6 +17,8 @@ You can install pyDHM from [PyPI](https://pypi.org/project/pyDHM/):
 
 pyDHM is supported on Python 3.7 and above.
 
+To use pyDHM, you must install opencv (cv2) and scipy in your enviroment.
+
 ## How to use
 
 Three sample scripts are provided:
