@@ -13,7 +13,7 @@ from pyDHM import utilities
 from pyDHM import phaseShifting
 
 # Phase shifting using the SOSR approach
-
+'''
 print ("SOSR example")
 # Load the holograms
 inp0 = utilities.imageRead('data/phase-shifting samples/cut_samples/I0_Fresnel_Lens.bmp')
@@ -31,11 +31,12 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-
+'''
 
 # Phase shifting via ps5-inline
 '''
 print ("ps5-inline example")
+
 inp0 = utilities.imageRead('data/phase-shifting samples/PS5/h1_PS5.png')
 inp1 = utilities.imageRead('data/phase-shifting samples/PS5/h2_PS5.png')
 inp2 = utilities.imageRead('data/phase-shifting samples/PS5/h3_PS5.png')

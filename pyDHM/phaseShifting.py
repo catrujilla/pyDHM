@@ -16,6 +16,7 @@ import numpy as np
 import math
 from math import pi
 from scipy.optimize import minimize
+import scipy
 import sys
 import cv2
 
