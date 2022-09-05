@@ -32,7 +32,7 @@ def SOSR(inp0, inp1, inp2, inp3, upper, wavelength, dx, dy, s=1, steps=4):
     '''
 
     if steps < s:
-        print('Please, Enter a steps value bigger than s')
+        print('Please, Enter a s value smaller than step')
         sys.exit()
 
     # Retrieving the input shape
@@ -141,7 +141,7 @@ def SOSR(inp0, inp1, inp2, inp3, upper, wavelength, dx, dy, s=1, steps=4):
 
     comp_phase = Isynth
 
-    print("Phase-shfting reconstruction finished.")
+    print("Phase-shifting reconstruction finished.")
 
     return comp_phase
 
