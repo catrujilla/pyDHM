@@ -2,7 +2,7 @@
 Title-->            Phase compensators package
 Author-->           Carlos Trujillo, Ana Doblas and Raul Castaneda
 Date-->             21/06/2021
-Last modified-->    11/04/2022
+Last modified-->    05/09/2022
 Groups-->           University of Memphis -  Optical Imaging Research laboratory (OIRL)
                     EAFIT University - Applied Optics Group
 Abstract -->        Script for implementing four-phase compensators algorithms implemented in pyDHM:
@@ -24,7 +24,7 @@ import scipy
 import sys
 import cv2
 
-def FRS(inp, upper, wavelength, dx, dy, s=5, step=0.2):
+def FRS(inp, upper, wavelength, dx, dy, s=2, step=10):
     '''
     # Function to compensate phase maps of off-axis DHM via the full ROI search algorithm.
     # Inputs:
@@ -34,8 +34,9 @@ def FRS(inp, upper, wavelength, dx, dy, s=5, step=0.2):
     # dx, dy - Pixel dimensions of the camera sensor used for recording the hologram
     # s = 2 and steps = 10
     '''
-    if step > s:
-        print('Please, Enter a step value smaller than s')
+    
+    if step < s:
+        print('Please, Enter a s value smaller than step')
         sys.exit()
 
     # determine if the hologram is off-axis

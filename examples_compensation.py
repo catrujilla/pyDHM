@@ -33,7 +33,7 @@ utilities.imageShow(phase, 'Phase reconstruction')
 '''
 
 # ERS example
-'''
+
 print ("ERS example")
 # Load the hologram
 #hologram = utilities.imageRead('data/compensation samples/star-target.png')
@@ -51,10 +51,10 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-'''
+
 
 # CFS example
-
+'''
 print ("CFS example")
 # Load the hologram
 #hologram = utilities.imageRead('data/compensation samples/hologram EAFIT.jpg')
@@ -71,7 +71,7 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-
+'''
 
 # CNT example
 '''
