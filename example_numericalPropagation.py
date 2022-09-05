@@ -1,14 +1,13 @@
 """
 Title-->            Numerical propagation examples.
 Author-->           Ana Doblas, Carlos Trujillo, Raul Castaneda,
-Date-->             12/05/2022
+Date-->             05/09/2022
                     University of Memphis
                     Optical Imaging Research lab (OIRL)
                     EAFIT University
                     Applied Optics Group
-Abstract -->        Script that implements the different methods to propgate the resulting complex field data
-Links-->          - https://unal-optodigital.github.io/JDiffraction/
-Links-->          -
+Abstract -->        Script that implements the different methods to propagate the resulting complex field data
+Links-->          - https://github.com/catrujilla/pyDHM
 
 """
 from pyDHM import utilities
