@@ -131,9 +131,6 @@ def sfmr(field, display):
         print('Please, install openCV library in your computer before to use the sfmr function')
         sys.exit()
 
-    print('select with the cursor mouse the region where you want to perform the spatial filtering and press the enter key')
-
-
     field = np.array(field)
     M, N = field.shape
 

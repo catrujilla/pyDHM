@@ -23,9 +23,9 @@ inp = utilities.imageRead('data/numericalPropagation samples/+3cm.tif')
 utilities.imageShow(inp, 'input field')
 
 # FT of the hologram
-ft_holo = utilities.FT(inp)
-ft_holo = utilities.intensity(ft_holo, True)
-utilities.imageShow(ft_holo, 'FT hologram')
+#ft_holo = utilities.FT(inp)
+#ft_holo = utilities.intensity(ft_holo, True)
+#utilities.imageShow(ft_holo, 'FT hologram')
 
 # Spatial filter
 filter = utilities.sfmr(inp, True)
@@ -48,16 +48,16 @@ for z in range(-100, 80, 10):
 
 
 print ("Fresnel transform example")
-# Fresnel transform and speckle reduction vu HM2F
+# Fresnel transform and speckle reduction via HM2F
 
 # Load the input plane
 inp = utilities.imageRead('data/numericalPropagation samples/horse.bmp')
 utilities.imageShow(inp, 'input field')
 
 # FT of the hologram
-ft_holo = utilities.FT(inp)
-ft_holo = utilities.intensity(ft_holo, True)
-utilities.imageShow(ft_holo, 'FT hologram')
+#ft_holo = utilities.FT(inp)
+#ft_holo = utilities.intensity(ft_holo, True)
+#utilities.imageShow(ft_holo, 'FT hologram')
 
 # Spatial filter
 filter = utilities.sfmr(inp, True)
@@ -83,12 +83,12 @@ inp = utilities.imageRead('data/numericalPropagation samples/die_1.jpg')
 utilities.imageShow(inp, 'input field')
 
 # FT of the hologram
-ft_holo = utilities.FT(inp)
-ft_holo = utilities.intensity(ft_holo, True)
-utilities.imageShow(ft_holo, 'FT hologram')
+#ft_holo = utilities.FT(inp)
+#ft_holo = utilities.intensity(ft_holo, True)
+#utilities.imageShow(ft_holo, 'FT hologram')
 
 # Spatial filter
-filter = utilities.sfmr(inp, True)
+filter = utilities.sfmr(inp, False)
 
 # Numerical propagation using the Fresnel transforms
 output = numericalPropagation.bluestein(filter - np.average(filter), 30/100, 632.8e-9, 7e-6, 7e-6, 4.5e-5, 4.5e-5)
