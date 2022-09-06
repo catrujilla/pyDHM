@@ -40,8 +40,8 @@ def FRS(inp, upper, wavelength, dx, dy, s=2, step=10):
         sys.exit()
 
     # determine if the hologram is off-axis
-    ret, thresh = regime(inp)
-    if ret < 3:
+    orders, thresh = regime(inp)
+    if orders < 3:
         print('FRS require an off-axis hologram')
         sys.exit()
 
@@ -128,9 +128,9 @@ def ERS(inp, upper, wavelength, dx, dy, s, step):
         sys.exit()
 
     # determine if the hologram is off-axis
-    ret, thresh = regime(inp)
-    if ret < 3:
-        print('ERS requires an off-axis hologram')
+    orders, thresh = regime(inp)
+    if orders < 3:
+        print('ERS require an off-axis hologram')
         sys.exit()
 
     # Retrieving the input shape
@@ -248,9 +248,9 @@ def CFS(inp, wavelength, dx, dy):
         sys.exit()
 
     # determine if the hologram is off-axis
-    ret, thresh = regime(inp)
-    if ret < 3:
-        print('CFS requires an off-axis hologram')
+    orders, thresh = regime(inp)
+    if orders < 3:
+        print('CFS require an off-axis hologram')
         sys.exit()
 
     # Retrieving the input shape
@@ -358,7 +358,7 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
     # Fourier transform to the hologram filtered
     ft_holo = FT(holo_filter)
     FT_display = intensity(ft_holo, False)
-    imageShow(FT_display, 'FT Filtered')
+    #imageShow(FT_display, 'FT Filtered')
 
     # reference wave for the first compensation (global linear compensation)
     ThetaXM = math.asin((N / 2 - Xcenter) * wavelength / (M * dx))
@@ -384,9 +384,9 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
     Cy = np.power((N * dy), 2)/(wavelength * n)
     cur = (Cx + Cy)/2
 
-
-    p = input("Enter the pixel position X_cent for the center of circular phase map on x axis")
-    q = input("Enter the pixel position Y_cent for the center of circular phase map on y axis ")
+    print("Carefully determine the center of the circular phase factor in the Binarized Image...")
+    p = input("Enter the pixel position X_cent of the center of circular phase map on x axis ")
+    q = input("Enter the pixel position Y_cent of the center of circular phase map on y axis ")
     f = ((M/2) - int(p))/2
     g = ((N/2) - int(q))/2
     print("Phase compensation started....")
@@ -481,22 +481,24 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
 
     return phaseCompensate
 
-
-
 '''
 Auxiliary functions
 '''
 
 # Function to determine if the holograms is off-axis or not
+# Function to determine if the holograms is off-axis or not
 def regime(inp):
     holoFT = np.float32(inp)
     fft_holo = cv2.dft(holoFT, flags=cv2.DFT_COMPLEX_OUTPUT)
     fft_holo = np.fft.fftshift(fft_holo)
-    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1])) 
+    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1]))
     minVal = np.amin(np.abs(fft_holo_image))
     maxVal = np.amax(np.abs(fft_holo_image))
     fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
                                          beta=-minVal * 255.0 / (maxVal - minVal))
+
+    # cv2.imshow('Binary image_resize', fft_holo_image)
+    # cv2.waitKey(0)
 
     # apply binary thresholding
     ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
@@ -512,10 +514,11 @@ def regime(inp):
     image_copy = fft_holo_image.copy()
     cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2,
                      lineType=cv2.LINE_AA)
-    #cv2.imshow('None approximation', image_copy)
-    #cv2.waitKey(0)
-    #print(len(contours))
-    return ret, thresh
+    # cv2.imshow('None approximation', image_copy)
+    # cv2.waitKey(0)
+    orders = len(contours)
+    # print(orders)
+    return orders, thresh
 
 # Spatial filtering process for rectangular selection for CNT
 def spatialFilterinCNT_II(inp, M, N, x1, y1, x2, y2):
@@ -589,9 +592,6 @@ def spatialFilterinCNT(inp, M, N):
     return Xcenter, Ycenter, holo_filter, ROI_array
 
 # Function to display an image
-# Inputs:
-# inp - The input complex field
-# title - The title of the displayed image
 def imageShow(inp, title):
     plt.imshow(inp, cmap='gray'), plt.title(title)  # image in gray scale
     plt.show()  # show image
@@ -613,9 +613,6 @@ def intensity(inp, log):
     return out
 
 # Function to calcule the amplitude representation of a given complex field
-# Inputs:
-# inp - The input complex field
-# log - boolean variable to determine if a log representation is applied
 def amplitude(inp, log):
     out = np.abs(inp)
 
@@ -625,18 +622,12 @@ def amplitude(inp, log):
     return out
 
 # Function to calcule the phase representation of a given complex field using the
-# function 'angle'
-# Inputs:
-# inp - The input complex field 
 def phase(inp):
     out = np.angle(inp)
 
     return out
     
 # Function to calcule the Fourier transform of a given field using the
-# 'fft of numpy'
-# Inputs:
-# inp - The input field
 def FT(inp):
     FT = np.fft.fft2(inp)
     FT = np.fft.fftshift(FT)

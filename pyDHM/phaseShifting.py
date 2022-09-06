@@ -400,11 +400,14 @@ def regime(inp):
     holoFT = np.float32(inp)
     fft_holo = cv2.dft(holoFT, flags=cv2.DFT_COMPLEX_OUTPUT)
     fft_holo = np.fft.fftshift(fft_holo)
-    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1])) 
+    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1]))
     minVal = np.amin(np.abs(fft_holo_image))
     maxVal = np.amax(np.abs(fft_holo_image))
     fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
                                          beta=-minVal * 255.0 / (maxVal - minVal))
+
+    # cv2.imshow('Binary image_resize', fft_holo_image)
+    # cv2.waitKey(0)
 
     # apply binary thresholding
     ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
@@ -420,11 +423,11 @@ def regime(inp):
     image_copy = fft_holo_image.copy()
     cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2,
                      lineType=cv2.LINE_AA)
-    #cv2.imshow('None approximation', image_copy)
-    #cv2.waitKey(0)
-    #print(len(contours))
-    return ret, thresh
-
+    # cv2.imshow('None approximation', image_copy)
+    # cv2.waitKey(0)
+    orders = len(contours)
+    # print(orders)
+    return orders, thresh
 
 # Function to calculate the intensity representation of a given complex field
 def intensity(inp, log):
