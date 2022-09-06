@@ -486,7 +486,6 @@ Auxiliary functions
 '''
 
 # Function to determine if the holograms is off-axis or not
-# Function to determine if the holograms is off-axis or not
 def regime(inp):
     holoFT = np.float32(inp)
     fft_holo = cv2.dft(holoFT, flags=cv2.DFT_COMPLEX_OUTPUT)

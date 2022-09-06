@@ -406,11 +406,11 @@ def regime(inp):
     fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
                                          beta=-minVal * 255.0 / (maxVal - minVal))
 
-    #cv2.imshow('Binary image_resize', fft_holo_image)
-    #cv2.waitKey(0)
+    # cv2.imshow('Binary image_resize', fft_holo_image)
+    # cv2.waitKey(0)
 
     # apply binary thresholding
-    ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
+    ret, thresh = cv2.threshold(fft_holo_image, 240, 255, cv2.THRESH_BINARY)
     #cv2.imshow('Binary image', thresh)
     thresh_rize = cv2.resize(thresh, (1024, 1024))
     #cv2.imshow('Binary image_resize', thresh_rize)
@@ -428,6 +428,7 @@ def regime(inp):
     orders = len(contours)
     # print(orders)
     return orders, thresh
+
 
 # Function to calculate the intensity representation of a given complex field
 def intensity(inp, log):
