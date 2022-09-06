@@ -314,9 +314,9 @@ def PS5(Inp0, Inp1, Inp2, Inp3, Inp4):
     '''
     
     # determine if the hologram is on-axis
-    ret, thresh = regime(Inp0)
-    if ret != 1:
-        print('PS5 require on-axis holograms')
+    orders, thresh = regime(Inp0)
+    if orders != 1:
+        print('PS5 require in-line holograms')
         sys.exit()
 
     # Retrieving the input shape
@@ -342,11 +342,10 @@ def PS4(Inp0, Inp1, Inp2, Inp3):
     '''
     
     # determine if the hologram is on-axis
-    ret, thresh = regime(Inp0)
-    if ret != 1:
-        print('PS4 require on-axis holograms')
+    orders, thresh = regime(Inp0)
+    if orders != 1:
+        print('PS4 require in-line holograms')
         sys.exit()
-
 
     # Retrieving the input shape
     inp0 = np.array(Inp0)
@@ -372,10 +371,11 @@ def PS3(Inp0, Inp1, Inp2):
     '''
 
     # determine if the hologram is on-axis
-    ret, thresh = regime(Inp0)
-    if ret != 1:
+    orders, thresh = regime(Inp0)
+    if orders != 1:
         print('PS3 require on-axis holograms')
         sys.exit()
+
 
     # Retrieving the input shape
     inp0 = np.array(Inp0)
