@@ -356,9 +356,9 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
     print("Spatial filtering process finished.")
 
     # Fourier transform to the hologram filtered
-    ft_holo = dis.FT(holo_filter)
-    FT_display = dis.intensity(ft_holo, False)
-    ui.imageShow(FT_display, 'FT Filtered')
+    ft_holo = FT(holo_filter)
+    FT_display = intensity(ft_holo, False)
+    imageShow(FT_display, 'FT Filtered')
 
     # reference wave for the first compensation (global linear compensation)
     ThetaXM = math.asin((N / 2 - Xcenter) * wavelength / (M * dx))
@@ -367,14 +367,14 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
 
     # First compensation
     comp_phase = holo_filter * reference
-    phase = dis.phase(comp_phase)
+    phase_c = phase(comp_phase)
 
     # show the first compensation
-    minVal = np.amin(phase)
-    maxVal = np.amax(phase)
-    phase_normalized = (phase - minVal) / (maxVal - minVal)
+    minVal = np.amin(phase_c)
+    maxVal = np.amax(phase_c)
+    phase_normalized = (phase_c - minVal) / (maxVal - minVal)
     binary_phase = (phase_normalized > 0.2)
-    ui.imageShow(binary_phase, 'Binarized phase')
+    imageShow(binary_phase, 'Binarized phase')
 
 
     # creating the new reference wave to eliminate the circular phase factors
@@ -411,13 +411,13 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
 
                 phaseCompensate = comp_phase * phi_spherical
                 phaseCompensate = np.angle(phaseCompensate)
-                # ui.imageShow(phaseCompensate, 'phaseCompensate')
+                #imageShow(phaseCompensate, 'phaseCompensate')
 
                 minVal = np.amin(phaseCompensate)
                 maxVal = np.amax(phaseCompensate)
                 phase_sca = (phaseCompensate - minVal) / (maxVal - minVal)
                 binary_phase = (phase_sca > 0.2)
-                # ui.imageShow(binary_phase, 'phaseCompensate')
+                #imageShow(binary_phase, 'phaseCompensate')
 
                 # Applying the summation and thresholding metric
                 sum = np.sum(np.sum(binary_phase))
@@ -451,13 +451,13 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
 
                 phaseCompensate = comp_phase * phi_spherical
                 phaseCompensate = np.angle(phaseCompensate)
-                #ui.imageShow(phaseCompensate, 'phaseCompensate')
+                #imageShow(phaseCompensate, 'phaseCompensate')
 
                 minVal = np.amin(phaseCompensate)
                 maxVal = np.amax(phaseCompensate)
                 phase_sca = (phaseCompensate - minVal) / (maxVal - minVal)
                 binary_phase = (phase_sca > 0.2)
-                #ui.imageShow(binary_phase, 'phaseCompensate')
+                #imageShow(binary_phase, 'phaseCompensate')
 
                 # Applying the summation and thresholding metric
                 sum = np.sum(np.sum(binary_phase))
@@ -612,6 +612,36 @@ def intensity(inp, log):
 
     return out
 
+# Function to calcule the amplitude representation of a given complex field
+# Inputs:
+# inp - The input complex field
+# log - boolean variable to determine if a log representation is applied
+def amplitude(inp, log):
+    out = np.abs(inp)
+
+    if log == True:
+        out = 20 * np.log(out)
+
+    return out
+
+# Function to calcule the phase representation of a given complex field using the
+# function 'angle'
+# Inputs:
+# inp - The input complex field 
+def phase(inp):
+    out = np.angle(inp)
+
+    return out
+    
+# Function to calcule the Fourier transform of a given field using the
+# 'fft of numpy'
+# Inputs:
+# inp - The input field
+def FT(inp):
+    FT = np.fft.fft2(inp)
+    FT = np.fft.fftshift(FT)
+
+    return FT
 
 # Spatial filtering for the FRS and ERS algorithms
 def spatialFiltering(inp, M, N, upper):

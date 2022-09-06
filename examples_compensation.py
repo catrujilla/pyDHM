@@ -74,7 +74,7 @@ utilities.imageShow(phase, 'Phase reconstruction')
 '''
 
 # CNT example
-'''
+
 print ("CNT example")
 # Load the hologram
 hologram = utilities.imageRead('data/compensation samples/holonotele_fly-resize.png')
@@ -91,7 +91,7 @@ output = phaseCompensation.CNT(hologram, 0.633, 7, 7, spatialFilter='sfmr', s=1,
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-'''
+
 
 # for the propagation
 '''
