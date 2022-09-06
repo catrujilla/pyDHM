@@ -13,7 +13,7 @@ from pyDHM import utilities
 from pyDHM import phaseShifting
 
 # Phase shifting using the SOSR approach
-'''
+
 print ("SOSR example")
 # Load the holograms
 inp0 = utilities.imageRead('data/phase-shifting samples/cut_samples/I0_Fresnel_Lens.bmp')
@@ -31,10 +31,10 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-'''
+
 
 # Phase shifting via ps5-inline
-'''
+
 print ("ps5-inline example")
 
 inp0 = utilities.imageRead('data/phase-shifting samples/PS5/h1_PS5.png')
@@ -48,10 +48,10 @@ output = phaseShifting.PS5(inp0, inp1, inp2, inp3, inp4)
 
 # Display the phase reconstruction
 utilities.imageShow(output, 'Phase reconstruction')
-'''
+
 
 # Phase shifting via ps4-inline
-'''
+
 print ("ps4-inline example")
 inp0 = utilities.imageRead('data/phase-shifting samples/PS4/h1-PS4.png')
 inp1 = utilities.imageRead('data/phase-shifting samples/PS4/h2-PS4.png')
@@ -63,10 +63,10 @@ output = phaseShifting.PS4(inp0, inp1, inp2, inp3)
 
 # Display the phase reconstruction
 utilities.imageShow(output, 'Phase reconstruction')
-'''
+
 
 # Phase shifting via ps3-inline
-'''
+
 print ("ps3-inline example")
 inp0 = utilities.imageRead('data/phase-shifting samples/PS3/h1_PS3.png')
 inp1 = utilities.imageRead('data/phase-shifting samples/PS3/h2_PS3.png')
@@ -77,10 +77,10 @@ output = phaseShifting.PS3(inp0, inp1, inp2)
 
 # Display the phase reconstruction
 utilities.imageShow(output, 'Phase reconstruction')
-'''
+
 
 # three blind raw Holograms
-'''
+
 print ("BPS3 example")
 # Load the holograms
 inp0 = utilities.imageRead('data/phase-shifting samples/usaf_1_cut.jpg')
@@ -97,10 +97,10 @@ output = phaseShifting.BPS3(inp2, inp1, inp0, 0.532, 2.4, 2.4)
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-'''
+
 
 # two blind raw Holograms
-'''
+
 print ("BPS2 example")
 # Load the holograms
 #inp0 = utilities.imageRead('data/phase-shifting samples/Neuron_1.jpg')
@@ -114,4 +114,3 @@ output = phaseShifting.BPS2(inp1, inp0, 0.532, 2.4, 2.4)
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-'''
