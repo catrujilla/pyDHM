@@ -343,13 +343,13 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
     print("Spatial filtering process started.....")
     if x1 is None and x2 is None and y1 is None and y2 is None:
         if spatialFilter == 'sfmr':
-            Xcenter, Ycenter, holo_filter, ROI_array = pci.spatialFilterinCNT(inp, M, N)
+            Xcenter, Ycenter, holo_filter, ROI_array = spatialFilterinCNT(inp, M, N)
         else:
             print("Please, indicate as option for the spatialFilter: 'sfmr' ")
             sys.exit()
     else:
         if spatialFilter == 'sfr':
-            Xcenter, Ycenter, holo_filter, ROI_array = pci.spatialFilterinCNT_II(inp, M, N, x1, y1, x2, y2)
+            Xcenter, Ycenter, holo_filter, ROI_array = spatialFilterinCNT_II(inp, M, N, x1, y1, x2, y2)
         else:
             print("Please, indicate as option for the spatialFilter: 'sfr' or introduce the rectangle coordinates")
             sys.exit()
@@ -517,6 +517,76 @@ def regime(inp):
     #print(len(contours))
     return ret, thresh
 
+# Spatial filtering process for rectangular selection for CNT
+def spatialFilterinCNT_II(inp, M, N, x1, y1, x2, y2):
+    ROI_array = np.zeros(4)
+
+    # Fourier transform of the hologram
+    FT = np.fft.fft2(inp)
+    FT = np.fft.fftshift(FT)
+
+    # Filter to find the X_center and Y_center
+    mask = np.zeros((M, N))
+    mask[y1:y2, x1:x2] = 1
+
+    # computing the center of the rectangle mask (X_center and Y_center)
+    Xcenter = x1 + (x2 - x1)/2
+    Ycenter = y1 + (y2 - y1)/2
+
+    # spatial filter
+    filter = FT * mask
+    holo_filter = np.fft.ifftshift(filter)
+    holo_filter = np.fft.ifft2(holo_filter)
+
+    # creating array for coordinates x1, y1, x2, y2
+    ROI_array[0] = x1
+    ROI_array[1] = y1
+    ROI_array[2] = x1 + x2
+    ROI_array[3] = y1 + y2
+
+    return Xcenter, Ycenter, holo_filter, ROI_array
+
+# Spatial filtering process - manual selection for CNT
+def spatialFilterinCNT(inp, M, N):
+    ROI_array = np.zeros(4)
+    holoFT = np.float32(inp)  # convertion of data to float
+    fft_holo = cv2.dft(holoFT, flags=cv2.DFT_COMPLEX_OUTPUT)  # FFT of hologram
+    fft_holo = np.fft.fftshift(fft_holo)
+    fft_holo_image = 20 * np.log(cv2.magnitude(fft_holo[:, :, 0], fft_holo[:, :, 1]))  # logaritm scale FFT
+    minVal = np.amin(np.abs(fft_holo_image))
+    maxVal = np.amax(np.abs(fft_holo_image))
+    fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
+                                         beta=-minVal * 255.0 / (maxVal - minVal))
+
+    ROI = cv2.selectROI(fft_holo_image, fromCenter=True)  # module to  ROI
+    # imCrop = fft_holo_image[int(ROI[1]):int(ROI[1] + ROI[3]), int(ROI[0]):int(ROI[0] + ROI[2])]
+    x1_ROI = int(ROI[1])
+    y1_ROI = int(ROI[0])
+    x2_ROI = int(ROI[1] + ROI[3])
+    y2_ROI = int(ROI[0] + ROI[2])
+    ROI_array[0] = x1_ROI
+    ROI_array[1] = y1_ROI
+    ROI_array[2] = x2_ROI
+    ROI_array[3] = y2_ROI
+
+    # computing the center of the rectangle mask
+    Ycenter = x1_ROI + (x2_ROI - x1_ROI)/2
+    Xcenter = y1_ROI + (y2_ROI - y1_ROI)/2
+
+    holo_filter = np.zeros((M, N, 2))
+    holo_filter[x1_ROI:x2_ROI, y1_ROI: y2_ROI] = 1
+    holo_filter = holo_filter * fft_holo
+    holo_filter = np.fft.ifftshift(holo_filter)
+    holo_filter = cv2.idft(holo_filter, flags=cv2.DFT_INVERSE)
+
+    holo_filter_real = holo_filter[:, :, 0]
+    holo_filter_imag = holo_filter[:, :, 1]
+    holo_filter = np.zeros((M, N), complex)
+    for p in range(M):
+        for q in range(N):
+            holo_filter[p, q] = complex(holo_filter_real[p, q], holo_filter_imag[p, q])
+
+    return Xcenter, Ycenter, holo_filter, ROI_array
 
 # Function to display an image
 # Inputs:
