@@ -1,4 +1,4 @@
-
+'''
 #Fig. 3
 # import packages
 from pyDHM import utilities
@@ -19,8 +19,9 @@ output = phaseShifting.PS3(inp0, inp1, inp2)
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(output, 'Phase reconstruction') 
+'''
 
-
+'''
 #Fig. 4
 # import packages 
 from pyDHM import utilities
@@ -40,7 +41,7 @@ output = phaseShifting.BPS2(inp0, inp1, 0.532, 2.9, 2.9)
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-
+'''
 
 '''
 #Fig. 5
@@ -49,7 +50,7 @@ from pyDHM import utilities
 from pyDHM import phaseCompensation
 
 # Load the hologram
-inp = utilities.imageRead(‘hologram.jpg’)
+inp = utilities.imageRead('hologram.jpg')
 
 # Compensation using the available approaches
 output = phaseCompensation.FRS(inp, True, 0.633, 6.9, 6.9, 2, 10)
@@ -91,22 +92,22 @@ from pyDHM import numericalPropagation
 
 # Load the hologram
 hologram =  utilities.imageRead('hologram.jpg')
-utilities.imageShow(hologram, 'Hologram’)
+utilities.imageShow(hologram, 'Hologram')
 
 # FT of the hologram
 ft_holo = utilities.FT(hologram)
 ft_holo = utilities.intensity(ft_holo, True)
-utilities.imageShow(ft_holo, 'FT hologram’)
+utilities.imageShow(ft_holo, 'FT hologram')
 
 # Circular spatial filter
-filter = utilities.sfc(hologram, 160, 303, 276)
+filter = utilities.sfc(hologram, 160, 303, 276, True)
 
 # Numerical propagation using the angular spectrum
-output = numericalPropagation.angularSpectrum(filter, z, 0.633, 6.9, 6.9)
+output = numericalPropagation.angularSpectrum(filter, 0.02, 0.633, 6.9, 6.9)
 
 # Display the output field 
 intensity = utilities.intensity(output, False)
-utilities.imageShow(intensity,‘ouput field’)
+utilities.imageShow(intensity,'ouput field')
 '''
 
 '''
@@ -116,22 +117,22 @@ from pyDHM import utilities
 from pyDHM import numericalPropagation
 
 # Load the hologram
-input = utilities.imageRead(hologram.bmp')
-utilities.imageShow(input, 'input field’)
+input = utilities.imageRead('hologram.tif')
+utilities.imageShow(input, 'input field')
 
 # FT of the hologram
-ft_holo = dis.FT(input)
-ft_holo = dis.intensity(ft_holo, True)
+ft_holo = utilities.FT(input)
+ft_holo = utilities.intensity(ft_holo, True)
 utilities.imageShow(ft_holo, 'FT hologram')
 
 # Spatial filter
-filter = utilities.sfr(input, 280, 500, 150, 340)
+filter = utilities.sfr(input, 280, 500, 150, 340, True)
 
 # Numerical propagation using the Fresnel transforms
 output = numericalPropagation.fresnel(input, -450, 0.000633, 0.005, 0.005)
-output =  numericalPropagation.bluestein(input, 0.03, 633e-9, 7.4e-6, 7.4e-6, 1.48e-5, 1.48e-5)                                                                                                    1.48e-5)
+output =  numericalPropagation.bluestein(input, 0.03, 633e-9, 7.4e-6, 7.4e-6, 1.48e-5, 1.48e-5)  
 
 # Display the output field
 amplitude = utilities.amplitude(output, True)
-utilities.imageShow(amplitude, output fieldn')
+utilities.imageShow(amplitude, 'output field')
 '''
