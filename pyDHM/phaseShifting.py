@@ -370,18 +370,18 @@ def PS3(Inp0, Inp1, Inp2):
     # inpX - The input intensities (captured) pi/3 phase-shifted holograms
     '''
 
+    '''
     # determine if the hologram is on-axis
     orders, thresh = regime(Inp0)
     if orders != 1:
-        print('PS3 require on-axis holograms')
+        print('PS3 require in-line holograms')
         sys.exit()
-
-
+    '''
+    
     # Retrieving the input shape
     inp0 = np.array(Inp0)
     inp1 = np.array(Inp1)
     inp2 = np.array(Inp2)
-
 
     print("Phase-shifing reconstruction started....")
 
@@ -406,8 +406,8 @@ def regime(inp):
     fft_holo_image = cv2.convertScaleAbs(fft_holo_image, alpha=255.0 / (maxVal - minVal),
                                          beta=-minVal * 255.0 / (maxVal - minVal))
 
-    # cv2.imshow('Binary image_resize', fft_holo_image)
-    # cv2.waitKey(0)
+    #cv2.imshow('Binary image_resize', fft_holo_image)
+    #cv2.waitKey(0)
 
     # apply binary thresholding
     ret, thresh = cv2.threshold(fft_holo_image, 200, 255, cv2.THRESH_BINARY)
