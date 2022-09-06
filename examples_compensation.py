@@ -86,7 +86,7 @@ ft_holo = utilities.intensity(ft_holo, True)
 #utilities.imageShow(ft_holo, 'FT hologram')
 
 # Numerical compensation using the CNT approach
-output = phaseCompensation.CNT(hologram, 0.633, 7, 7, spatialFilter='sfmr', s=1, step=0.1)
+output = phaseCompensation.CNT(hologram, 0.633, 7, 7, spatialFilter='sfmr')
 
 # Display the phase reconstruction
 phase = utilities.phase(output)

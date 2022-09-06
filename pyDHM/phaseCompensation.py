@@ -311,7 +311,7 @@ def CFS(inp, wavelength, dx, dy):
     return comp_phase
 
 
-def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilter=None, s=None, step=None):
+def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilter=None):
     '''
     # Function to compensate phase maps of image plane off-axis DHM, operating in non-telecentric regimen
     # Inputs:
@@ -322,7 +322,7 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
     # y1 - Coordinate y1 for the rectangle (upper left corner)
     # x2 - Coordinate x2 for the rectangle (lower right corner)
     # y2 - Coordinate y2 for the rectangle (lower right corner)
-    # spatialFilter - The approach to compute the spatial filter, two options available sfr and sfmr
+    # spatialFilter - The approach to compute the spatial filter, two options available      and sfmr
     '''
 
     wavelength = wavelength * 0.000001
