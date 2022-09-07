@@ -14,23 +14,30 @@ How to select the correct reconstruction algorithm?
 
 - Operation of the DHM system based on the interference angle.
 
-![Interference_angle](/images/fig2.jpg)
+![Interference_angle](/images/fig2.JPG)
 
 - Telecentric (d = fTL) vs Non-Telecentric DHM systems (d ≠ fTL)
 
-![Telecentric](/images/fig3.jpg)
+![Telecentric](/images/fig3.JPG)
 
 - In-focus vs out-of-focus holograms
 
-![In-focus](/images/fig4.jpg)
+![In-focus](/images/fig4.JPG)
+
+
+
+## pyDHM library structure and examples
+
+The pyDHM library consists of four packages. The first utility package includes essential functions such as reading, displaying images, and filtering Fourier spectrums of holograms. The second package is related to reconstructing in-line and slightly off-axis DHM systems using phase-shifting techniques. The third package reconstructs phase images from off-axis telecentric-based DHM holograms. Finally, the last package includes algorithms for propagating complex amplitude distributions using the angular spectrum, the Fresnel and Fresnel-Bluestein transform approaches. This section explains each package in detail, including the functions and required parameters. We also present sample codes and results for illustrating the performance of the pyDHM library. For more information, please read our pyDHM publication.
+
+### Utility package
+
+The first package in the pyDHM library contains functions for reading and displaying images, computing the Fourier transform (FT), and applying filters to reduce speckle noise (62). Since the library focuses on DHM applications dealing with complex amplitude distributions, one can display any complex wavefield's amplitude, intensity, or phase map. Although these operations can be straightforwardly implemented in Python for experienced users, this package is aimed to provide compact and user-friendly codes. This package is imported by typing the following code lines, from pyDHM import utilities. Table 1 shows the information for each package function, including the declaration statement and the parameters needed. Examples of the use of this package are shown in the upcoming figures. 
 
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sUeVBAqYXJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>  
 
-## Code and sample holograms
-
-### Code
 
 Click here for download the DRF code for MATLAB. 
 * [Download MATLAB script](https://drive.google.com/drive/folders/1su6cW7JX1s3KXNQFdRl8nBjlIo2jobZ-?usp=sharing)
