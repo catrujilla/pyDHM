@@ -16,7 +16,9 @@ How to select the correct reconstruction algorithm?
 
 ![Interference_angle](/images/fig2.jpg)
 
-- 
+- Telecentric (d = fTL) vs Non-Telecentric DHM systems (d ≠ fTL)
+
+![Telecentric](/images/fig3.jpg)
 
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sUeVBAqYXJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
