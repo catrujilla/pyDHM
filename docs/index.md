@@ -1,13 +1,11 @@
-## PyDHM
+# pyDHM
 
-An open-source Python library to numerically recover the complex wavefield information of samples from Digital Holographic Microscopy (DHM) for a wide variety of experimental recording configurations. Among others, the library includes:
+## An Open-Source Python library for Digital Holographic Microscopy Imaging.
 
-## Examples
+pyDHM is an open-source Python library aimed at Digital Holographic Microscopy (DHM) applications. The pyDHM is a user-friendly library written in the robust programming language of Python that provides a set of numerical processing algorithms for reconstructing amplitude and phase images for a broad range of optical DHM configurations. The pyDHM implements phase-shifting approaches for in-line and slightly off-axis systems and enables phase compensation for telecentric and non-telecentric systems. In addition, pyDHM includes three propagation algorithms for numerical focusing complex amplitude distributions in DHM and digital holography (DH) setups. We have validated the library using numerical and experimental holograms.
 
-In the following videos, you can see some examples of holographic videos compensated with thw DRF algorithm. 
-The results reported in the following sections were obtained from running the algorithm on a computer supported by an Intel® Xeon® CPU E3-1270 v5 @ 3.60 GHz with 64 GB of RAM.
+### Reconstruction algorithms for different optical DHM configurations 
 
-### USAF Test
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sUeVBAqYXJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>  
