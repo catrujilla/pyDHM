@@ -34,7 +34,7 @@ The pyDHM library consists of four packages. The first utility package includes 
 
 The first package in the pyDHM library contains functions for reading and displaying images, computing the Fourier transform (FT), and applying filters to reduce speckle noise. Since the library focuses on DHM applications dealing with complex amplitude distributions, one can display any complex wavefield's amplitude, intensity, or phase map. Although these operations can be straightforwardly implemented in Python for experienced users, this package is aimed to provide compact and user-friendly codes. This package is imported by typing the following code lines:
 
-'from pyDHM import utilities'
+*from pyDHM import utilities*
 
 The information for each package function is presented bellow, including the declaration statement and the parameters needed. Examples of the use of this package are shown in the upcoming figures. 
 
@@ -42,69 +42,69 @@ The information for each package function is presented bellow, including the dec
 
 ##### imageRead
 
-imageRead(namefile)
+*imageRead(namefile)*
 
-Function to read an image. The parameter 'namefile' corresponds to the name of the image to be opened (e.g., the hologram). 
+Function to read an image. The parameter *namefile* corresponds to the name of the image to be opened (e.g., the hologram). 
 
 ##### imageShow
 
-imageShow(inp, name)
+*imageShow(inp, name)*
 
-Function to display an image. Two parameters are necessary: 'inp' is the data to be visualized (e.g., the loaded hologram, the amplitude, intensity or phase distribution), and 'name' is a label for the displayed image.  
+Function to display an image. Two parameters are necessary: *inp* is the data to be visualized (e.g., the loaded hologram, the amplitude, intensity or phase distribution), and *name* is a label for the displayed image.  
 
 ##### amplitude
 
-amplitude(output, log)
+*amplitude(output, log)*
 
-Function to compute the amplitude distribution of the output complex wavefield. Two parameters are necessary: 'output' is the complex wavefield distribution, and 'log' corresponds to a Boolean variable (e.g., True or False) for applying a common logarithm transformation to the amplitude distribution. 
+Function to compute the amplitude distribution of the output complex wavefield. Two parameters are necessary: *output* is the complex wavefield distribution, and *log* corresponds to a Boolean variable (e.g., True or False) for applying a common logarithm transformation to the amplitude distribution. 
 
 ##### intensity
 
-intensity(output, log)
+*intensity(output, log)*
 
-Function to compute the intensity distribution of the output complex amplitude wavefield. Two parameters are necessary: 'output' is the complex wavefield distribution, and 'log' is the Boolean variable to apply a common logarithm transformation. 
+Function to compute the intensity distribution of the output complex amplitude wavefield. Two parameters are necessary: *output* is the complex wavefield distribution, and *log* is the Boolean variable to apply a common logarithm transformation. 
 
 ##### phase
 
-phase(output)
+*phase(output)*
 
-Function to compute the phase distribution of an output complex wavefield distribution. The only required parameter is 'output', the complex wavefield distribution.
+Function to compute the phase distribution of an output complex wavefield distribution. The only required parameter is *output*, the complex wavefield distribution.
 
 ##### Fourier Transform
 
-FT(input)
+*FT(input)*
 
-Function to compute the 2D Fourier transform of an image. The only required parameter is the image, 'input'.
+Function to compute the 2D Fourier transform of an image. The only required parameter is the image, *input*.
 
 ##### Inverse Fourier Transform
 
-IFT(input)
+*IFT(input)*
 
-Function to compute the 2D inverse Fourier transform of a spectral image. The only required parameter is the spectral image, 'input'.
+Function to compute the 2D inverse Fourier transform of a spectral image. The only required parameter is the spectral image, *input*.
 
 ##### Circular filter
 
-sfc(field, radius, centX, centY, display)
+*sfc(field, radius, centX, centY, display)*
 
-Function to filter the Fourier Transform of a hologram using a circular mask. The required parameters are: 'field' is the hologram, 'radius' is the radius of the circular mask in pixels, and ('centX', 'centY') are the central pixel positions for the circular mask. The boolean parameter 'display': if True, the spatially filtered hologram is displayed.
+Function to filter the Fourier Transform of a hologram using a circular mask. The required parameters are: *field* is the hologram, *radius* is the radius of the circular mask in pixels, and (*centX*, *centY*) are the central pixel positions for the circular mask. The boolean parameter *display*: if True, the spatially filtered hologram is displayed.
 
 ##### Rectangular filter
 
-sfr(field, x1, x2, y1, y2, display)
+*sfr(field, x1, x2, y1, y2, display)*
 
-Function to filter the Fourier Transform of a hologram using a rectangular mask. The required parameters are: 'field' the hologram; ('x1', 'y1') the pixel coordinates of the upper left corner for the rectangular mask; and ('x2', 'y'2) the pixel coordinates of the lower right corner for the rectangular mask. The boolean parameter 'display': if True, the spatially filtered hologram is displayed.
+Function to filter the Fourier Transform of a hologram using a rectangular mask. The required parameters are: *field* the hologram; (*x1*, *y1*) the pixel coordinates of the upper left corner for the rectangular mask; and (*x2*, *y2*) the pixel coordinates of the lower right corner for the rectangular mask. The boolean parameter *display*: if True, the spatially filtered hologram is displayed.
 
 ##### Manual rectangular filter
 
-sfmr(field, display)
+*sfmr(field, display)*
 
-Function to filter the Fourier Transform of a hologram with a manually selected rectangular mask (OpenCV functionality). The required parameters are 'field', the hologram, and the boolean parameter 'display'; if True, the spatially filtered hologram is displayed.
+Function to filter the Fourier Transform of a hologram with a manually selected rectangular mask (OpenCV functionality). The required parameters are *field*, the hologram, and the boolean parameter *display*; if True, the spatially filtered hologram is displayed.
 
 ##### Hybrid median-mean
 
-HM2F(inp, kernel)
+*HM2F(inp, kernel)*
 
-Function to apply the median-mean filter to reduce speckle noise. The parameters are: 'inp' the reconstructed amplitude or phase image to be applied the filter; and 'kernel' corresponds to the maximum kernel size for the median filter.
+Function to apply the median-mean filter to reduce speckle noise. The parameters are: *inp* the reconstructed amplitude or phase image to be applied the filter; and *kernel* corresponds to the maximum kernel size for the median filter.
 
 ### Phase-shifting package
 
@@ -159,7 +159,7 @@ Function to reconstruct the phase distribution using 2 phase-shifted holograms w
 
 The third package of the pyDHM library is devoted to the phase reconstruction of DHM holograms without or with minimal perturbations (e.g., fully-compensated reconstructed phase images without distorting sawtooth fringes) using an off-axis system. To call this package you must include the following line:
 
-*pyDHM import phaseCompensation*
+*from pyDHM import phaseCompensation*
 
 In this package, we have implemented four functions, three functions for holograms recorded in telecentric regime: the full-ROI-search (FRS) function, the efficient-ROI -search (ERS) function, and the cost-function-search (CFS) function. And one function for holograms recorded in non-telecentric regime, the compensation non-telecentric (CNT) function. Table 3 shows the definition statement and a brief description of each package function. For example, the FRS function has seven input parameters: the off-axis hologram (inp), a True/False Boolean variable (upper) for choosing the region where the algorithm would find the maximum peak value of the +1 or -1 order for the filtering step. Wavelength corresponds to the wavelength used to record the hologram; dx and dy are the pixel size of the camera sensor for the acquisition of the hologram along the x- and y- direction, respectively, and s and step are parameters for selecting the search region to find the best phase reconstructed image. These parameters determine the ROI size and the number of points inside this search region. For example, if using s = 2 and step =10, a 2x2 pixels ROI size with 100 spatial frequency locations is selected to search for the best phase reconstructed image. For using the efficient ROI search, the EFR function must be executed. This function has the same parameters as the FRS function. To run the cost-function search, the CFS function must be called. The parameters for this function are inp, wavelength, dx, and dy. By the other hand, the CNT function contain 8 parameters. Whereas the first ones are inp, wavelength, dx, dy, already defined parameters, (x1, x2, y1, y2) are the pixels position to create a rectangular mask for filtering the +1 difraction order, where (x1, y1) and (x2, y2) are the pixel position of the upper-left and bottom-right corner, respectively.
 
