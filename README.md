@@ -21,7 +21,7 @@ To use pyDHM, you must install opencv (cv2) and scipy in your enviroment.
 
 ## Documentation
 
-The pyDHM documentation page can be found in [Project Documentation]([https://pypi.org/project/pyDHM/](https://catrujilla.github.io/pyDHM/):
+The pyDHM documentation page can be found in [Project Documentation](https://pypi.org/project/pyDHM/](https://catrujilla.github.io/pyDHM/):
 
 ## How to use
 
