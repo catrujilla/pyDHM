@@ -269,7 +269,7 @@ If using pyDHM for publication, please kindly cite the following:
 
 | Researcher  | email | Google Scholar | 
 | ------------- | ------------- |-------------| 
-| Raul Castañeda | *sobandov@eafit.edu.co* |  [RaulGoogle]([https://scholar.google.es/citations?user=PvvDEMYAAAAJ&hl=en](https://scholar.google.com/citations?user=RBtkL1oAAAAJ&hl=es)) |
+| Raul Castañeda | *sobandov@eafit.edu.co* |  [RaulGoogle](https://scholar.google.com/citations?user=RBtkL1oAAAAJ&hl=es) |
 | Ana Doblas| *adoblas@memphis.edu* | [AnaGoogle](https://scholar.google.es/citations?user=PvvDEMYAAAAJ&hl=en) |
 | Carlos Trujillo| *catrujilla@eafit.edu.co* | [CarlosGoogle](https://scholar.google.com/citations?user=BKVrl2gAAAAJ&hl=es) |
 
