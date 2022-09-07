@@ -1,7 +1,6 @@
 ## PyDHM
 
-The Dynamic ROI fast (DRF) algorithm is a mehtod for compensating phase from digital video holograms captured by digital holographyc microscopy at video rates. 
-This algorithm is robust, it does not require knowing specific parameters of the system, other than the size of the pixels of the camera and the wavelength of the light source, and the compensation process **runs at video rates (15 - 17 fps)**, which is comparable to the capture rates of digital cameras used to record holograms. 
+An open-source Python library to numerically recover the complex wavefield information of samples from Digital Holographic Microscopy (DHM) for a wide variety of experimental recording configurations. Among others, the library includes:
 
 ## Examples
 
