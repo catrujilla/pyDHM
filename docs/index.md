@@ -229,43 +229,48 @@ Function to propagate a complex distribution using the Fresnel-Bluestein transfo
 
 ![Example 3](/images/fig7.JPG)
 
+
 ### Videos: How to use it
 
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sUeVBAqYXJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>  
 
+
 ### Installation
 
-Click here for download the DRF code for MATLAB. 
-* [Download MATLAB script](https://drive.google.com/drive/folders/1su6cW7JX1s3KXNQFdRl8nBjlIo2jobZ-?usp=sharing)
+You can install pyDHM from [PyPI](https://pypi.org/project/pyDHM/):
 
+*pip install pyDHM*
 
-### Sample holograms
+pyDHM is supported on Python 3.7 and above.
 
-Here are the hologramas from where the videos shown prevously were exctracted. You can download the folders with the whole set of holograms and try them yourself.
-
-- [USAF Test](https://drive.google.com/drive/folders/1bAfjlpGmKy6tdngCz6NAa601YNRNC2S5?usp=sharing)
-- [Red blood cells](https://drive.google.com/drive/folders/1McD-yl8pHNrWxM6Vdd6p0wdMfufiy3BE?usp=sharing)
-- [Spoiled vinaigrette](https://drive.google.com/drive/folders/1j4XBxeqpnIbFAP7NSf7gWLpAC7lVeAIX?usp=sharing)
+To use pyDHM, you must install opencv (cv2) and scipy in your enviroment.
 
 
 ### Funding
-This project has received funding from EAFIT University (Medellin, Antioquia, Colombia).
+
+This research was partially funded by the Vicerrectoría de Ciencia, Tecnología e Innovación from Universidad EAFIT, and National Science Foundation (NSF) grant number 2042563.
+
+
+### Credits
+
+pyDHM was developed in python 3.7, numpy 1.18, opencv 4.5 and scipy 1.4.
+
 
 ### Citation
-If using this information for publication, please kindly cite the following paper:
 
-Obando-Vásquez, S (2021). "Implementación de un algoritmo para recuperación de información de fase de muestras biológicas dinámicas a través de microscopía holográfica digital"[Unpublished Bachelor's thesis] Universidad EAFIT. 
+If using pyDHM for publication, please kindly cite the following: 
 
-Carlos Trujillo, Raúl Castañeda, Pablo Piedrahita-Quintero, and Jorge Garcia-Sucerquia, "Automatic full compensation of quantitative phase imaging in off-axis digital holographic microscopy," Appl. Opt. 55, 10299-10306 (2016)
+*R. Castaneda, A. Doblas, and C. Trujillo, “pyDHM: A Python library for applications in Digital Holographic Microscopy,” Plos ONE, under authors’ revision (2022).*
+
 
 ### Support or Contact 
 
 | Researcher  | email | Google Scholar | 
 | ------------- | ------------- |-------------| 
-| Sofia Obando-Vasquez | *sobandov@eafit.edu.co* |  | 
+| Raul Castañeda | *sobandov@eafit.edu.co* |  [RaulGoogle]([https://scholar.google.es/citations?user=PvvDEMYAAAAJ&hl=en](https://scholar.google.com/citations?user=RBtkL1oAAAAJ&hl=es)) |
 | Ana Doblas| *adoblas@memphis.edu* | [AnaGoogle](https://scholar.google.es/citations?user=PvvDEMYAAAAJ&hl=en) |
 | Carlos Trujillo| *catrujilla@eafit.edu.co* | [CarlosGoogle](https://scholar.google.com/citations?user=BKVrl2gAAAAJ&hl=es) |
 
-This Research is a collaboration between Doblas’ and Trujillos’ research lab.
+The Principal Investigators of pyDHM project are Dr. Carlos Trujillo and Dr. Ana Doblas.
