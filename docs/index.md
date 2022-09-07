@@ -32,7 +32,11 @@ The pyDHM library consists of four packages. The first utility package includes 
 
 ### Utility package
 
-The first package in the pyDHM library contains functions for reading and displaying images, computing the Fourier transform (FT), and applying filters to reduce speckle noise (62). Since the library focuses on DHM applications dealing with complex amplitude distributions, one can display any complex wavefield's amplitude, intensity, or phase map. Although these operations can be straightforwardly implemented in Python for experienced users, this package is aimed to provide compact and user-friendly codes. This package is imported by typing the following code lines, from pyDHM import utilities. Table 1 shows the information for each package function, including the declaration statement and the parameters needed. Examples of the use of this package are shown in the upcoming figures. 
+The first package in the pyDHM library contains functions for reading and displaying images, computing the Fourier transform (FT), and applying filters to reduce speckle noise. Since the library focuses on DHM applications dealing with complex amplitude distributions, one can display any complex wavefield's amplitude, intensity, or phase map. Although these operations can be straightforwardly implemented in Python for experienced users, this package is aimed to provide compact and user-friendly codes. This package is imported by typing the following code lines, 
+
+'from pyDHM import utilities'
+
+The information for each package function is presented bellow, including the declaration statement and the parameters needed. Examples of the use of this package are shown in the upcoming figures. 
 
 #### Available functions in the utility package:
 
@@ -40,13 +44,67 @@ The first package in the pyDHM library contains functions for reading and displa
 
 imageRead(namefile)
 
-Function to read an image. The parameter namefile corresponds to the name of the image to be opened (e.g., the hologram). 
+Function to read an image. The parameter 'namefile' corresponds to the name of the image to be opened (e.g., the hologram). 
 
 ##### imageShow
 
 imageShow(inp, name)
 
-Function to display an image. Two parameters are necessary: inp is the data to be visualized (e.g., the load hologram, the amplitude, intensity or phase distribution), and a name is a label for the displayed image.  
+Function to display an image. Two parameters are necessary: 'inp' is the data to be visualized (e.g., the loaded hologram, the amplitude, intensity or phase distribution), and 'name' is a label for the displayed image.  
+
+##### amplitude
+
+amplitude(output, log)
+
+Function to compute the amplitude distribution of the output complex wavefield. Two parameters are necessary: 'output' is the complex wavefield distribution, and 'log' corresponds to a Boolean variable (e.g., True or False) for applying a common logarithm transformation to the amplitude distribution. 
+
+##### intensity
+
+intensity(output, log)
+
+Function to compute the intensity distribution of the output complex amplitude wavefield. Two parameters are necessary: 'output' is the complex wavefield distribution, and 'log' is the Boolean variable to apply a common logarithm transformation. 
+
+##### phase
+
+phase(output)
+
+Function to compute the phase distribution of an output complex wavefield distribution. The only required parameter is 'output', the complex wavefield distribution.
+
+##### Fourier Transform
+
+FT(input)
+
+Function to compute the 2D Fourier transform of an image. The only required parameter is the image, 'input'.
+
+##### Inverse Fourier Transform
+
+IFT(input)
+
+Function to compute the 2D inverse Fourier transform of a spectral image. The only required parameter is the spectral image, 'input'.
+
+##### Circular filter
+
+sfc(field, radius, centX, centY, display)
+
+Function to filter the Fourier Transform of a hologram using a circular mask. The required parameters are: 'field' is the hologram, 'radius' is the radius of the circular mask in pixels, and ('centX', 'centY') are the central pixel positions for the circular mask. The boolean parameter 'display': if True, the spatially filtered hologram is displayed.
+
+##### Rectangular filter
+
+sfr(field, x1, x2, y1, y2, display)
+
+Function to filter the Fourier Transform of a hologram using a rectangular mask. The required parameters are: 'field' the hologram; ('x1', 'y1') the pixel coordinates of the upper left corner for the rectangular mask; and ('x2', 'y'2) the pixel coordinates of the lower right corner for the rectangular mask. The boolean parameter 'display': if True, the spatially filtered hologram is displayed.
+
+##### Manual rectangular filter
+
+sfmr(field, display)
+
+Function to filter the Fourier Transform of a hologram with a manually selected rectangular mask (OpenCV functionality). The required parameters are 'field', the hologram, and the boolean parameter 'display'; if True, the spatially filtered hologram is displayed.
+
+##### Hybrid median-mean
+
+HM2F(inp, kernel)
+
+Function to apply the median-mean filter to reduce speckle noise. The parameters are: 'inp' the reconstructed amplitude or phase image to be applied the filter; and 'kernel' corresponds to the maximum kernel size for the median filter.
 
 
 <p align="center">
