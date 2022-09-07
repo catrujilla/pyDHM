@@ -8,7 +8,7 @@ pyDHM is an open-source Python library aimed at Digital Holographic Microscopy (
 
 The selection of the proper computational reconstruction algorithm for a DHM configuration is a critical task to avoid incorrect sample measurements.
 
-![My helpful screenshot](/images/fig1.jpg)
+![DHM setup](/images/fig1.jpg)
 
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sUeVBAqYXJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
