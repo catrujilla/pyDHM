@@ -155,6 +155,14 @@ Function to reconstruct the phase distribution using 2 phase-shifted holograms w
 ![Example 1](/images/fig5.JPG)
 
 
+### Fully-compensated phase reconstruction package
+
+The third package of the pyDHM library is devoted to the phase reconstruction of DHM holograms without or with minimal perturbations (e.g., fully-compensated reconstructed phase images without distorting sawtooth fringes) using an off-axis system. To call this package you must include the following line:
+
+*pyDHM import phaseCompensation*
+
+In this package, we have implemented four functions, three functions for holograms recorded in telecentric regime: the full-ROI-search (FRS) function, the efficient-ROI -search (ERS) function, and the cost-function-search (CFS) function. And one function for holograms recorded in non-telecentric regime, the compensation non-telecentric (CNT) function. Table 3 shows the definition statement and a brief description of each package function. For example, the FRS function has seven input parameters: the off-axis hologram (inp), a True/False Boolean variable (upper) for choosing the region where the algorithm would find the maximum peak value of the +1 or -1 order for the filtering step. Wavelength corresponds to the wavelength used to record the hologram; dx and dy are the pixel size of the camera sensor for the acquisition of the hologram along the x- and y- direction, respectively, and s and step are parameters for selecting the search region to find the best phase reconstructed image. These parameters determine the ROI size and the number of points inside this search region. For example, if using s = 2 and step =10, a 2x2 pixels ROI size with 100 spatial frequency locations is selected to search for the best phase reconstructed image. For using the efficient ROI search, the EFR function must be executed. This function has the same parameters as the FRS function. To run the cost-function search, the CFS function must be called. The parameters for this function are inp, wavelength, dx, and dy. By the other hand, the CNT function contain 8 parameters. Whereas the first ones are inp, wavelength, dx, dy, already defined parameters, (x1, x2, y1, y2) are the pixels position to create a rectangular mask for filtering the +1 difraction order, where (x1, y1) and (x2, y2) are the pixel position of the upper-left and bottom-right corner, respectively.
+
 
 
 
