@@ -227,7 +227,7 @@ Function to propagate a complex distribution using the Fresnel-Bluestein transfo
 
 ##### Example of use of the package
 
-![Example 3](/images/fig7.JPG)
+
 
 
 ### Videos: How to use it
