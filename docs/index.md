@@ -10,28 +10,16 @@ The selection of the proper computational reconstruction algorithm for a DHM con
 
 ![DHM setup](/images/fig1.jpg)
 
+How to select the correct reconstruction algorithm?
+
+- Operation of the DHM system based on the interference angle.
+
+![Interference_angle](/images/fig2.jpg)
+
+- 
+
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sUeVBAqYXJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>  
-
-### Fresh red blood cells
-First test
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ru1tB6Ebh2o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>  
-
-Under stable conditions
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wRBf7IUoCO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>  
-
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mi_fMuvIM-o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>  
-
-### Spoiled vinaigrette
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JevDJM25aVI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>  
 
 ## Code and sample holograms
