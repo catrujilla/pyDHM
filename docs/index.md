@@ -32,7 +32,7 @@ The pyDHM library consists of four packages. The first utility package includes 
 
 ### Utility package
 
-The first package in the pyDHM library contains functions for reading and displaying images, computing the Fourier transform (FT), and applying filters to reduce speckle noise. Since the library focuses on DHM applications dealing with complex amplitude distributions, one can display any complex wavefield's amplitude, intensity, or phase map. Although these operations can be straightforwardly implemented in Python for experienced users, this package is aimed to provide compact and user-friendly codes. This package is imported by typing the following code lines, 
+The first package in the pyDHM library contains functions for reading and displaying images, computing the Fourier transform (FT), and applying filters to reduce speckle noise. Since the library focuses on DHM applications dealing with complex amplitude distributions, one can display any complex wavefield's amplitude, intensity, or phase map. Although these operations can be straightforwardly implemented in Python for experienced users, this package is aimed to provide compact and user-friendly codes. This package is imported by typing the following code lines:
 
 'from pyDHM import utilities'
 
@@ -105,6 +105,57 @@ Function to filter the Fourier Transform of a hologram with a manually selected 
 HM2F(inp, kernel)
 
 Function to apply the median-mean filter to reduce speckle noise. The parameters are: 'inp' the reconstructed amplitude or phase image to be applied the filter; and 'kernel' corresponds to the maximum kernel size for the median filter.
+
+### Phase-shifting package
+
+The second package in the pyDHM library contains the phase-shifting strategies for reconstructing the complex amplitude distribution in in-line and slightly off-axis systems. The following code line:
+
+'from pyDHM import phaseShifting',
+
+calls this package. The package is composed of six different phase-shifting (PS) approaches. We have implemented the traditional phase-shifting techniques in which the phase shifts are known using 5 (PS5), 4 (PS4) and 3 (PS3) phase-shifted images. We have also implemented the quadrature PS method (SOSR) and two blind PS approaches using 3 (BPS3) and 2 (BPS2) frames for slightly off-axis DHM systems. The two blind PS approaches require a DHM operating in telecentric regime. The different PS strategies implemented in the package, their definition line statement, and respective parameters are presented bellow. 
+
+##### 5 frames phase-shifting (in-line)
+
+PS5(inp0, inp1, inp2, inp3, inp4)
+
+Function to reconstruct the phase distribution using 5 phase-shifted holograms with a phase shift of π/2. The required parameters are the five holograms 'inp0' to 'inp4'.
+
+##### 4 frames phase-shifting (in-line)
+
+PS4(inp0, inp1, inp2, inp3)
+
+Function to reconstruct the phase distribution using 4 phase-shifted holograms with a phase shift equal to π/2. The required parameters are the four holograms 'inp0' to 'inp3'.
+
+##### 3 frames phase-shifting (in-line)
+
+PS3(inp0, inp1, inp2)
+
+Function to reconstruct the phase distribution using 3 phase-shifted holograms with a phase shift equal to π/3. The required parameters are the three holograms 'inp' to 'inp2'.
+
+##### quadrature method (slightly off-axis)
+
+SOSR(inp0, inp1, inp2, inp3, upper, wavelength, dx, dy, s=1, steps=4)
+
+Function to reconstruct the phase distribution using 4 phase-shifted holograms with a phase shift equal to π/2. This quadrature method is based on the SOSR approach proposed by De Nicola et al. [De Nicola S, Ferraro P, Finizio A, Pierattini G. Wave front reconstruction of Fresnel off-axis holograms with compensation of aberrations by means of phase-shifting digital holography. Opt Lasers Eng. 2002;37(4):331–40]. The input parameters are the four holograms, 'inp0' to 'inp3; 'upper' corresponds to a region for searching the diffraction order; 'wavelength' is the illumination wavelength, ('dx','dy') are the pixel sizes along the x- and y- axis, respectively. 's' is a parameter to determine the ROI size in pixels in each dimension to search for the best spatial frequency (size in each dimension equals 1+2s). 'steps' is the number of steps for the search inside the ROI in each dimension.
+
+##### Blind 3 raw frames phase-shifting (slightly off-axis)
+
+BPS3(inp0, inp1, inp2, wavelength, dx, dy)
+
+Function to reconstruct the phase distribution using 3 phase-shifted holograms with an arbitrary and unknown phase shift. The input parameters are the three holograms ('inp0'-'inp2'); the illumination wavelength ('wavelength'), and the pixel sizes for x and y axes ('dx', 'dy'). This method is valid for slightly off-axis DHM systems operating in telecentric regime. 
+
+##### Blind 2 raw frames phase-shifting (slightly off-axis)
+
+BPS2(inp0, inp1, wavelength, dx, dy) 
+
+Function to reconstruct the phase distribution using 2 phase-shifted holograms with an arbitrary and unknown phase shift. This method is valid for slightly off-axis DHM systems operating in telecentric regime. The spectral +1 and -1 components in the spectrum of the recorded hologram should not overlay. The input parameters are the two holograms ('inp0'-'inp1'); the wavelength of the illumination ('wavelength'), and the pixel sizes for x and y axes ('dx', 'dy').
+
+##### Example of use of the package
+
+![Example 1](/images/fig5.JPG)
+
+
+
 
 
 <p align="center">
