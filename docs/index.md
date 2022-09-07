@@ -34,6 +34,21 @@ The pyDHM library consists of four packages. The first utility package includes 
 
 The first package in the pyDHM library contains functions for reading and displaying images, computing the Fourier transform (FT), and applying filters to reduce speckle noise (62). Since the library focuses on DHM applications dealing with complex amplitude distributions, one can display any complex wavefield's amplitude, intensity, or phase map. Although these operations can be straightforwardly implemented in Python for experienced users, this package is aimed to provide compact and user-friendly codes. This package is imported by typing the following code lines, from pyDHM import utilities. Table 1 shows the information for each package function, including the declaration statement and the parameters needed. Examples of the use of this package are shown in the upcoming figures. 
 
+#### Available functions in the utility package:
+
+##### imageRead
+
+imageRead(namefile)
+
+Function to read an image. The parameter namefile corresponds to the name of the image to be opened (e.g., the hologram). 
+
+##### imageShow
+
+imageShow(inp, name)
+
+Function to display an image. Two parameters are necessary: inp is the data to be visualized (e.g., the load hologram, the amplitude, intensity or phase distribution), and a name is a label for the displayed image.  
+
+
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sUeVBAqYXJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>  
