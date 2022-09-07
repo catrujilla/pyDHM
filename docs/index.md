@@ -114,6 +114,8 @@ The second package in the pyDHM library contains the phase-shifting strategies f
 
 calls this package. The package is composed of six different phase-shifting (PS) approaches. We have implemented the traditional phase-shifting techniques in which the phase shifts are known using 5 (PS5), 4 (PS4) and 3 (PS3) phase-shifted images. We have also implemented the quadrature PS method (SOSR) and two blind PS approaches using 3 (BPS3) and 2 (BPS2) frames for slightly off-axis DHM systems. The two blind PS approaches require a DHM operating in telecentric regime. The different PS strategies implemented in the package, their definition line statement, and respective parameters are presented bellow. 
 
+#### Available functions in the utility package:
+
 ##### 5 frames phase-shifting (in-line)
 
 *PS5(inp0, inp1, inp2, inp3, inp4)*
@@ -165,6 +167,8 @@ In this package, we have implemented four functions, three functions for hologra
 
 The definition statement and a brief description of each package function is presented bellow.
 
+#### Available functions in the utility package:
+
 ##### Full ROI search
 
 *FRS(inp, upper, wavelength, dx, dy, s, step)*
@@ -193,12 +197,45 @@ Function to reconstruct fully-compensated phase images of holograms recorded in 
 
 ![Example 2](/images/fig6.JPG)
 
+### Numerical propagation package 
 
+The final package in pyDHM is the numerical propagation package. This package contains the numerical propagation algorithms to compute the scalar complex diffractive wavefield at different propagation distances. The package is called by the following code line:
+
+*from pyDHM import numericalPropagation*
+
+We have implemented three different propagators: angular spectrum *angularSpectrum* the Fresnel transform *fresnel*, and the Fresnel-Bluestein transform *bluestein*. The declaration statement and the parameters needed for each propagator are presented bellow. 
+
+#### Available functions in the utility package:
+
+##### Angular spectrum
+
+*angularSpectrum(field, z, wavelength, dx, dy)*
+
+Function to propagate a complex distribution using the angular spectrum approach. *field* is the input complex wavefield to be propagated. The distance to propagate the input wavefield is represented by *z*. *wavelength* is the wavelength of the illumination source used to record the hologram. Finally, *dx* and *dy* are the pixel size for the input and output planes along the x- and y- directions.
+
+##### Fresnel transform 
+
+*fresnel(field, z, wavelength, dx, dy)*
+
+Function to propagate a complex distribution using the Fresnel Transform approach. *field* is the input complex wavefield to be propagated. The distance to propagate the input wavefield is represented by *z*. *wavelength* is the wavelength of the illumination source used to record the hologram. Finally, *dx* and *dy* are the pixel size for the input and output planes along the x- and y- directions.
+
+##### Fresnel-Bluestein transform 
+
+*bluestein(field, z, wavelength, dx, dy, dxout, dyout)*
+
+Function to propagate a complex distribution using the Fresnel-Bluestein transform approach. *field* is the input complex wavefield to be propagated. The distance to propagate the input wavefield is represented by *z*. *wavelength* is the wavelength of the illumination source used to record the hologram. Finally, *dx* and *dy* are the pixel size for the input and output planes along the x- and y- directions. The bluestein propagator function has two additional parameters (e.g., *dxout* and *dyout*) related to the pixel size at the output plane. Note that the pixel size of the input (*dx*, *dy*) and the output (*dxout*, *dyout*) planes can be different in this method.
+
+##### Example of use of the package
+
+![Example 3](/images/fig7.JPG)
+
+### Videos: How to use it
 
 <p align="center">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sUeVBAqYXJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>  
 
+### Installation
 
 Click here for download the DRF code for MATLAB. 
 * [Download MATLAB script](https://drive.google.com/drive/folders/1su6cW7JX1s3KXNQFdRl8nBjlIo2jobZ-?usp=sharing)
