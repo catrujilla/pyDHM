@@ -114,7 +114,7 @@ The second package in the pyDHM library contains the phase-shifting strategies f
 
 calls this package. The package is composed of six different phase-shifting (PS) approaches. We have implemented the traditional phase-shifting techniques in which the phase shifts are known using 5 (PS5), 4 (PS4) and 3 (PS3) phase-shifted images. We have also implemented the quadrature PS method (SOSR) and two blind PS approaches using 3 (BPS3) and 2 (BPS2) frames for slightly off-axis DHM systems. The two blind PS approaches require a DHM operating in telecentric regime. The different PS strategies implemented in the package, their definition line statement, and respective parameters are presented bellow. 
 
-#### Available functions in the utility package:
+#### Available functions in the Phase-shifting package:
 
 ##### 5 frames phase-shifting (in-line)
 
@@ -167,7 +167,7 @@ In this package, we have implemented four functions, three functions for hologra
 
 The definition statement and a brief description of each package function is presented bellow.
 
-#### Available functions in the utility package:
+#### Available functions in the Fully-compensated phase reconstruction package:
 
 ##### Full ROI search
 
@@ -205,7 +205,7 @@ The final package in pyDHM is the numerical propagation package. This package co
 
 We have implemented three different propagators: angular spectrum *angularSpectrum* the Fresnel transform *fresnel*, and the Fresnel-Bluestein transform *bluestein*. The declaration statement and the parameters needed for each propagator are presented bellow. 
 
-#### Available functions in the utility package:
+#### Available functions in the Numerical propagation package:
 
 ##### Angular spectrum
 
