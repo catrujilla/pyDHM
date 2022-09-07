@@ -10,7 +10,7 @@ The selection of the proper computational reconstruction algorithm for a DHM con
 
 ![DHM setup](/images/fig1.jpg)
 
-How to select the correct reconstruction algorithm?
+#### How to select the correct reconstruction algorithm?
 
 - Operation of the DHM system based on the interference angle.
 
