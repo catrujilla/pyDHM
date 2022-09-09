@@ -247,6 +247,9 @@ def imageRead(namefile):
 # title - The title of the displayed image
 def imageShow(inp, title):
     plt.imshow(inp, cmap='gray'), plt.title(title)  # image in gray scale
+
+    if title == None:
+        plt.imshow(inp, cmap='gray')
     plt.show()  # show image
 
     return
@@ -257,10 +260,12 @@ def imageShow(inp, title):
 # inp - The input complex field
 # log - boolean variable to determine if a log representation is applied
 def amplitude(inp, log):
+        
     out = np.abs(inp)
-
-    if log == True:
-        out = 20 * np.log(out)
+    if log == False or log == None:
+        out
+    else:
+         out = 20 * np.log(out)
 
     return out
 
@@ -271,9 +276,9 @@ def amplitude(inp, log):
 # log - boolean variable to determine if a log representation is applied
 def intensity(inp, log):
     out = np.abs(inp)
-    out = out * out
-
-    if log == True:
+    if log == False or log == None:
+        out = out * out
+    else:
         out = 20 * np.log(out)
         out[out == np.inf] = 0
         out[out == -np.inf] = 0
