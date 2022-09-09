@@ -263,7 +263,7 @@ In summary, the pyDHM library includes the below errors messages for the followi
 ### Videos: How to use it
 
 <p align="center">
-<iframe width="1024" height="840" src="https://www.youtube.com/watch?v=Oi67GcZMbp8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1519" height="585" src="https://www.youtube.com/embed/Oi67GcZMbp8" title="Workshop Digital Holographic Microscopy (DHM): Seminar 4 -  Advances in DHM Hardware" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>  
 
 <p align="center">
