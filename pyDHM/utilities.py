@@ -126,9 +126,9 @@ def sfmr(field, display):
     # field - The field to be filtered
     # display - boolean variable (True or False) to visualize the FT spatial filter
     """
-
+        
     if cv2.__version__ == None:
-        print('Please, install openCV library in your computer before to use the sfmr function')
+        print('Please install OpenCV library before using the sfmr function')
         sys.exit()
 
     field = np.array(field)
