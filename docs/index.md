@@ -234,6 +234,32 @@ Function to propagate a complex distribution using the Fresnel-Bluestein transfo
 
 The pyDHM library also incorporates some appropriate error messages to guide the users upon error. In particular, we have created error messages for five particular situations. The first two situations are related to the running environment and having the correct libraries installed. In particular, error messages are displayed if the OpenCV (cv2) and scipy libraries are not installed. On the other hand, an error message is displayed when users incorrectly use one of the functions based on the given holograms. In other words, we have implemented a local function, named *regime*, within the in-line PS techniques (e.g., PS3, PS4 and PS5) and the telecentric-based phase compensation methods (e.g., FRS,ERS, and CFS) that checks the optical configuration of the DHM system (e.g., on/slight off axis versus off axis) based on the spectrum of the input hologram and determines if the called function is suitable for the given hologram. For example, let us assume that the three terms in the hologram's spectrum overlap (e.g., non off-axis configuration) and the user calls the ERS function. Since that function is only valid for holograms recorded in off-axis configuration, an error message (e.g., ‘ERS requires an off-axis hologram’) is displayed. We have also implemented error messages when incorrect values of s and step parameters are used for the SORS, FRS, and ERS functions. Finally, the CNT function enables the spatial filtering of the object frequencies from the hologram spectrum using a popup window (*sfmr*) or a rectangular filter mask defined by the x1, x2, y1, y2 parameters. An error message will appear if the user tries to call the CNT function using the x1, x2, y1, y2 parameters with the option *sfmr*. Also, another error message will appear if the user calls the CNT function using the *sfr* option without inserting the x1, x2, y1, y2 parameters.
 
+In summary, the pyDHM library includes the below errors messages for the following issues:
+
+1) When (x1,y1,x2,y2) values are introduced but the spatial filter option is ‘sfmr’ 
+
+*Please use the sfr option for the spatial filter if (x1,y1,x2,y2) are used as inputs or remove the (x1,y1,x2,y2) as inputs of the CNT function.*
+
+2) When (x1,y1,x2,y2) values are not introduced but the spatial filter option is ‘sfr’ 
+
+*Please use the sfmr option for the spatial filter or insert the values for  (x1,y1,x2,y2) is the spatial filter option is ‘sfr’*
+
+3) If the scipy library is not installed in your desktop/laptop 
+
+*Please install scipy library and import the function minimize*
+
+4) If the OpenCV library is not installed in your desktop/laptop 
+
+*Please install OpenCV library before using the sfmr function and option of the CNT function* 
+
+5) If the hologram used as input of the in-line phase-shifting algorithms (e.g., PS3, PS4, PS5) is recorded in off-axis configuration (e.g., the three terms composing the hologram spectrum do not overlap) 
+
+*PS3/PS4/PS5 algorithm requires on-axis holograms* 
+
+6) If the hologram used as input of the phase compensation algorithms for off-axis telecentric-based DHM systems (e.g., FRS,ERS, CFS) is recorded in on-axis configuration (e.g., the three terms composing the hologram spectrum overlap) 
+
+*FRS/ERS/CFS algorith requires on-axis holograms* 
+
 ### Videos: How to use it
 
 <p align="center">
