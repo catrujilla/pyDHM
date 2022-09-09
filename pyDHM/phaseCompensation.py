@@ -42,8 +42,9 @@ def FRS(inp, upper, wavelength, dx, dy, s=2, step=10):
     # determine if the hologram is off-axis
     orders, thresh = regime(inp)
     if orders < 3:
-        print('FRS require an off-axis hologram')
+        print('FRS algorithm requires off-axis holograms')
         sys.exit()
+        
 
     # Retrieving the input shape
     inp = inp - np.average(inp)
@@ -130,7 +131,7 @@ def ERS(inp, upper, wavelength, dx, dy, s, step):
     # determine if the hologram is off-axis
     orders, thresh = regime(inp)
     if orders < 3:
-        print('ERS require an off-axis hologram')
+        print('ERS algorithm requires off-axis holograms')
         sys.exit()
 
     # Retrieving the input shape
@@ -250,7 +251,7 @@ def CFS(inp, wavelength, dx, dy):
     # determine if the hologram is off-axis
     orders, thresh = regime(inp)
     if orders < 3:
-        print('CFS require an off-axis hologram')
+        print('CFS algorithm requires off-axis holograms')
         sys.exit()
 
     # Retrieving the input shape
@@ -345,13 +346,13 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
         if spatialFilter == 'sfmr':
             Xcenter, Ycenter, holo_filter, ROI_array = spatialFilterinCNT(inp, M, N)
         else:
-            print("Please, indicate as option for the spatialFilter: 'sfmr' ")
+            print("Please use the sfmr option for the spatial filter or insert the values for  (x1,y1,x2,y2) if the spatial filter option is ‘sfr’  ")
             sys.exit()
     else:
         if spatialFilter == 'sfr':
             Xcenter, Ycenter, holo_filter, ROI_array = spatialFilterinCNT_II(inp, M, N, x1, y1, x2, y2)
         else:
-            print("Please, indicate as option for the spatialFilter: 'sfr' or introduce the rectangle coordinates")
+            print("Please use the sfr option for the spatial filter if (x1,y1,x2,y2) are used as inputs or remove the (x1,y1,x2,y2) as inputs of the CNT function")
             sys.exit()
     print("Spatial filtering process finished.")
 
