@@ -157,7 +157,7 @@ def BPS2(Inp0, Inp1, wavelength, dx, dy):
     '''
 
     if scipy.__version__ == None:
-        print('Please, install scipy library and import minimize function')
+        print('Please install scipy library and import the function minimize')
         sys.exit()
 
     # retrieving the input shape
@@ -235,7 +235,7 @@ def BPS3(Inp0, Inp1, Inp2, wavelength, dx, dy):
     '''
     
     if scipy.__version__ == None:
-        print('Please, install scipy library and import minimize function')
+        print('Please install scipy library and import the function minimize')
         sys.exit()
 
 
@@ -316,7 +316,7 @@ def PS5(Inp0, Inp1, Inp2, Inp3, Inp4):
     # determine if the hologram is on-axis
     orders, thresh = regime(Inp0)
     if orders != 1:
-        print('PS5 require in-line holograms')
+        print('PS5 algorithm requires on-axis holograms')
         sys.exit()
 
     # Retrieving the input shape
@@ -344,7 +344,7 @@ def PS4(Inp0, Inp1, Inp2, Inp3):
     # determine if the hologram is on-axis
     orders, thresh = regime(Inp0)
     if orders != 1:
-        print('PS4 require in-line holograms')
+        print('PS4 algorithm requires on-axis holograms')
         sys.exit()
 
     # Retrieving the input shape
@@ -374,7 +374,7 @@ def PS3(Inp0, Inp1, Inp2):
     # determine if the hologram is on-axis
     orders, thresh = regime(Inp0)
     if orders != 1:
-        print('PS3 require in-line holograms')
+        print('PS3 algorithm requires on-axis holograms ')
         sys.exit()
     '''
     
