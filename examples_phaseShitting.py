@@ -88,8 +88,8 @@ inp1 = utilities.imageRead('data/phase-shifting samples/usaf_2_cut.jpg')
 inp2 = utilities.imageRead('data/phase-shifting samples/usaf_3_cut.jpg')
 
 utilities.imageShow(inp0, 'Hologram 1')
-utilities.imageShow(inp0, 'Hologram 2')
-utilities.imageShow(inp0, 'Hologram 3')
+utilities.imageShow(inp1, 'Hologram 2')
+utilities.imageShow(inp2, 'Hologram 3')
 
 # Phase shifting via BPS3 (three holograms slightly off-axis)
 output = phaseShifting.BPS3(inp2, inp1, inp0, 0.532, 2.4, 2.4)
