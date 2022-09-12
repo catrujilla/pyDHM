@@ -262,8 +262,28 @@ In summary, the pyDHM library includes the below errors messages for the followi
 
 ### Videos: How to use it
 
+#### How to use the angular spectrum function to focus complex distributions computationally
+
 <p align="center">
-<iframe width="1519" height="585" src="https://www.youtube.com/embed/Oi67GcZMbp8" title="Workshop Digital Holographic Microscopy (DHM): Seminar 4 -  Advances in DHM Hardware" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1519" height="585" src="https://www.youtube.com/embed/3p6Bsh048Hw" title="pyDHM - how to use the angular spectrum function to focus complex distributions computationally" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>  
+
+#### How to use the FRS function to reconstruct phase images with minimum phase distortions
+
+<p align="center">
+<iframe width="1519" height="585" src="https://www.youtube.com/embed/CMHbF0uoWDk" title="pyDHM - how to use the FRS function to reconstruct phase images with minimum phase distortions" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>  
+
+#### How to use the blind 2-frame phase shifting function (BPS2)
+
+<p align="center">
+<iframe width="1519" height="585" src="https://www.youtube.com/embed/Z9o0ODe1lUQ" title="pyDHM library - how to use the blind 2-frame phase shifting function (BPS2)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>  
+
+#### How to install pyDHM using pycharm
+
+<p align="center">
+<iframe width="1519" height="585" src="https://www.youtube.com/embed/h76nZM6JpXo" title="pyDHM library - how to install using pycharm" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>  
 
 ### Installation
