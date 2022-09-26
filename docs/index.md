@@ -311,7 +311,7 @@ pyDHM was developed in python 3.7, numpy 1.18, opencv 4.5 and scipy 1.4.
 
 If using pyDHM for publication, please kindly cite the following: 
 
-*R. Castaneda, A. Doblas, and C. Trujillo, “pyDHM: A Python library for applications in Digital Holographic Microscopy,” Plos ONE, under authors’ revision (2022).*
+*R. Castaneda, A. Doblas, and C. Trujillo, “pyDHM: A Python library for applications in Digital Holographic Microscopy,” Plos ONE, acccepted for publication (2022).*
 
 
 ### Support or Contact 
