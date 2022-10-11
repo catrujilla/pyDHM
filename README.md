@@ -33,7 +33,8 @@ Three sample scripts are provided:
 
 More on the use of the pyDHM library can be found in the following academic papers:
 
-R. Castañeda-Sepulveda, C. Trujillo and A. Doblas "pyDHM: A Python library for applications in Digital Holographic Microscopy", accepted for publication in plosONE, 2022.
+Castañeda R, Trujillo C, Doblas A (2022) pyDHM: A Python library for applications in digital holographic microscopy. PLoS ONE 17(10): e0275818.
+https://doi.org/10.1371/journal.pone.0275818
 
 R. Castaneda, C. Trujillo, and A. Doblas, "An Open-Source Python library for Digital Holographic Microscopy Imaging," in Imaging and Applied Optics Congress 2022 (3D, AOA, COSI, ISA, pcAOP), Technical Digest Series (Optica Publishing Group, 2022), paper JTh2A.1.
 https://opg.optica.org/abstract.cfm?URI=3D-2022-JTh2A.1
