@@ -13,7 +13,7 @@ from pyDHM import utilities
 from pyDHM import phaseShifting
 
 # Phase shifting using the SOSR approach
-
+"""
 print ("SOSR example")
 # Load the holograms
 inp0 = utilities.imageRead('data/phase-shifting samples/cut_samples/I0_Fresnel_Lens.bmp')
@@ -31,7 +31,7 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-
+"""
 
 # Phase shifting via ps5-inline
 
@@ -45,9 +45,10 @@ inp4 = utilities.imageRead('data/phase-shifting samples/PS5/h5_PS5.png')
 
 # Phase shifting via ps5 ()
 output = phaseShifting.PS5(inp0, inp1, inp2, inp3, inp4)
+phase = utilities.phase(output)
 
 # Display the phase reconstruction
-utilities.imageShow(output, 'Phase reconstruction')
+utilities.imageShow(phase, 'Phase reconstruction')
 
 
 # Phase shifting via ps4-inline
@@ -60,9 +61,10 @@ inp3 = utilities.imageRead('data/phase-shifting samples/PS4/h4-PS4.png')
 
 # Phase shifting via ps4 ()
 output = phaseShifting.PS4(inp0, inp1, inp2, inp3)
+phase = utilities.phase(output)
 
 # Display the phase reconstruction
-utilities.imageShow(output, 'Phase reconstruction')
+utilities.imageShow(phase, 'Phase reconstruction')
 
 
 # Phase shifting via ps3-inline
@@ -74,13 +76,14 @@ inp2 = utilities.imageRead('data/phase-shifting samples/PS3/h3_PS3.png')
 
 # Phase shifting via ps3 ()
 output = phaseShifting.PS3(inp0, inp1, inp2)
+phase = utilities.phase(output)
 
 # Display the phase reconstruction
-utilities.imageShow(output, 'Phase reconstruction')
+utilities.imageShow(phase, 'Phase reconstruction')
 
 
 # three blind raw Holograms
-
+"""
 print ("BPS3 example")
 # Load the holograms
 inp0 = utilities.imageRead('data/phase-shifting samples/usaf_1_cut.jpg')
@@ -114,3 +117,4 @@ output = phaseShifting.BPS2(inp1, inp0, 0.532, 2.4, 2.4)
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
+"""

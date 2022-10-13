@@ -328,7 +328,9 @@ def PS5(Inp0, Inp1, Inp2, Inp3, Inp4):
 
     print("Phase-shifing reconstruction started....")
     # computing the compensation
-    comp_phase = np.arctan((2*(inp3-inp1))/(2*inp2-inp0-inp4))
+    #comp_phase = np.arctan((2*(inp3-inp1))/(2*inp2-inp0-inp4))
+    comp_phase = (2*(inp3-inp1)*1j)+(2*inp2-inp0-inp4)
+    
     print("Phase-shifing reconstruction finished.")
 
     return comp_phase
@@ -357,7 +359,8 @@ def PS4(Inp0, Inp1, Inp2, Inp3):
     # compensation process
     print("Phase-shifing reconstruction started....")
     # computing the compensation
-    comp_phase = np.arctan((inp3-inp1)/(inp2-inp0))
+    #comp_phase = np.arctan((inp3-inp1)/(inp2-inp0))
+    comp_phase = (inp3-inp1)*1j + (inp2-inp0)
     print("Phase-shifing reconstruction finished.")
 
     return comp_phase
@@ -386,7 +389,8 @@ def PS3(Inp0, Inp1, Inp2):
     print("Phase-shifing reconstruction started....")
 
     # computing the compensation
-    comp_phase = np.arctan((np.sqrt(3)*(inp2-inp0))/((inp2+inp0)-(2*inp1)))
+    #comp_phase = np.arctan((np.sqrt(3)*(inp2-inp0))/((inp2+inp0)-(2*inp1)))
+    comp_phase = (np.sqrt(3)*(inp2-inp0))*1j + ((inp2+inp0)-(2*inp1))
     print("Phase-shifing reconstruction finished.")
 
     return comp_phase
