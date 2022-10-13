@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text(encoding="utf8")
 # This call to setup() does all the work
 setup(
     name="pyDHM",
-    version="1.0.4",
+    version="1.0.5",
     description="An open-source Python library to numerically recover the complex wavefield information of samples from Digital Holographic Microscopy (DHM)",
     long_description=README,
     long_description_content_type="text/markdown",
