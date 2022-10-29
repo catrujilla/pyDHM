@@ -306,6 +306,9 @@ This research was partially funded by the Vicerrectoría de Ciencia, Tecnología
 
 pyDHM was developed in python 3.7, numpy 1.18, opencv 4.5 and scipy 1.4.
 
+### Acknowledgment
+
+The authors would like to thank the 3D Imaging & Display Laboratory, co-lead by Drs. M. Martinez-Corral and G. Saavedra, and Opto-Digital Processing Group, lead by Dr. J. Garcia-Sucerquia for providing the experimental holograms used to validate the pyDHM library.
 
 ### Citation
 
