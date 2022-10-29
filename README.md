@@ -39,6 +39,10 @@ https://doi.org/10.1371/journal.pone.0275818
 R. Castaneda, C. Trujillo, and A. Doblas, "An Open-Source Python library for Digital Holographic Microscopy Imaging," in Imaging and Applied Optics Congress 2022 (3D, AOA, COSI, ISA, pcAOP), Technical Digest Series (Optica Publishing Group, 2022), paper JTh2A.1.
 https://opg.optica.org/abstract.cfm?URI=3D-2022-JTh2A.1
 
+## Acknowledgment
+
+The authors would like to thank the 3D Imaging & Display Laboratory, co-lead by Drs. M. Martinez-Corral and G. Saavedra, and Opto-Digital Processing Group, lead by Dr. J. Garcia-Sucerquia for providing the experimental holograms used to validate the pyDHM library.
+
 ## About us
 
 The library has been envisioned, designed, and implemented by the Optical Imaging Research laboratory (OIRL) from the University of Memphis and the Applied Optics research group from Universidad EAFIT. The main contributors to the library are:
