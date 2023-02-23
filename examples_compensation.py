@@ -13,15 +13,21 @@ from pyDHM import utilities
 from pyDHM import phaseCompensation
 from pyDHM import numericalPropagation
 
+from timeit import default_timer as timer
+
 # FRS example using library
-'''
+
 print ("FRS example")
 # Load the hologram
 hologram = utilities.imageRead('data/compensation samples/fly 20x.bmp')
 utilities.imageShow(hologram, 'Hologram')
 
+start = timer()	#Start to count time
+
 # Numerical compensation using the FRS approach
 output = phaseCompensation.FRS(hologram, True, 0.532, 2.4, 2.4, 2, 10)
+
+print("With CPU-only processing:", timer()-start) #Time for fft_shift execution
 
 # Display the amplitude reconstruction
 amplitude = utilities.amplitude(output, False)
@@ -30,7 +36,7 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-'''
+
 
 # ERS example
 '''
