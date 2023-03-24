@@ -409,7 +409,7 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
                 np.power(Y - gTemp, 2) * np.power(dy, 2) / curTemp)
                 phi_spherical = math.pi * phi_spherical / wavelength
                 phi_spherical = np.exp(-1j * phi_spherical)
-
+                
                 phaseCompensate = comp_phase * phi_spherical
                 phaseCompensate = np.angle(phaseCompensate)
                 #imageShow(phaseCompensate, 'phaseCompensate')
@@ -427,8 +427,30 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
                     g_out = gTemp
                     cur_out = curTemp
                     sum_max = sum
+                    
+                    '''
+                    
+                    # Create a figure with three subplots
+                    fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
+                
+                    # Plot the first image in the first subplot
+                    ax1.imshow(np.angle(phi_spherical))
+                    ax1.set_title('phi_spherical')
+                
+                    # Plot the second image in the second subplot
+                    ax2.imshow(np.angle(comp_phase))
+                    ax2.set_title('comp_phase')
+                
+                    # Plot the third image in the third subplot
+                    ax3.imshow(phaseCompensate)
+                    ax3.set_title('phaseCompensate')
+                
+                    # Show the figure
+                    plt.show()
+                    
+                    '''
 
-    #print("after first search ", f_out, g_out, cur_out)
+    print("after first search ", f_out, g_out, cur_out)
 
     cont = 0
     sum_max = 0
@@ -450,6 +472,22 @@ def CNT(inp, wavelength, dx, dy, x1=None, x2=None, y1=None, y2=None, spatialFilt
                 phi_spherical = math.pi * phi_spherical / wavelength
                 phi_spherical = np.exp(-1j * phi_spherical)
 
+                '''
+                # Create a figure with two subplots
+                fig, (ax1, ax2) = plt.subplots(1, 2)
+                
+                # Plot the first image in the first subplot
+                ax1.imshow(np.angle(phi_spherical))
+                ax1.set_title('phi_spherical')
+                
+                # Plot the second image in the second subplot
+                ax2.imshow(np.angle(comp_phase))
+                ax2.set_title('comp_phase')
+                
+                # Show the figure
+                plt.show()
+                '''
+                
                 phaseCompensate = comp_phase * phi_spherical
                 phaseCompensate = np.angle(phaseCompensate)
                 #imageShow(phaseCompensate, 'phaseCompensate')

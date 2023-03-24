@@ -16,7 +16,7 @@ from pyDHM import numericalPropagation
 from timeit import default_timer as timer
 
 # FRS example using library
-
+'''
 print ("FRS example")
 # Load the hologram
 hologram = utilities.imageRead('data/compensation samples/fly 20x.bmp')
@@ -36,7 +36,7 @@ utilities.imageShow(amplitude, 'Amplitude reconstruction')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-
+'''
 
 # ERS example
 '''
@@ -80,7 +80,7 @@ utilities.imageShow(phase, 'Phase reconstruction')
 '''
 
 # CNT example
-'''
+
 print ("CNT example")
 # Load the hologram
 hologram = utilities.imageRead('data/compensation samples/holonotele_fly-resize.png')
@@ -97,7 +97,7 @@ output = phaseCompensation.CNT(hologram, 0.633, 7, 7, spatialFilter='sfmr')
 # Display the phase reconstruction
 phase = utilities.phase(output)
 utilities.imageShow(phase, 'Phase reconstruction')
-'''
+
 
 # for the propagation
 '''
