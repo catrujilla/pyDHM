@@ -47,7 +47,7 @@ The authors would like to thank the 3D Imaging & Display Laboratory, co-lead by 
 
 The library has been envisioned, designed, and implemented by the Optical Imaging Research laboratory (OIRL) from the University of Memphis and the Applied Optics research group from Universidad EAFIT. The main contributors to the library are:
 
-PhD candidate Raúl Castañeda-Quintero (University of Memphis) rcstdqnt@memphis.edu
+Dr. Raúl Castañeda-Quintero (University of Memphis) rcstdqnt@memphis.edu
 
 Professor Dr. Ana Doblas (University of Memphis) adoblas@memphis.edu
 
