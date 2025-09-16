@@ -123,7 +123,7 @@ def angularSpectrum(field, z, wavelength, dx, dy):
     field_spec = np.fft.fft2(field_spec)
     field_spec = np.fft.fftshift(field_spec)
 
-    phase = np.exp2(1j * z * pi * np.sqrt(np.power(1 / wavelength, 2) - (np.power(X * dfx, 2) + np.power(Y * dfy, 2))))
+    phase = np.exp(1j * z * 2 * pi * np.sqrt(np.power(1 / wavelength, 2) - (np.power(X * dfx, 2) + np.power(Y * dfy, 2))))
 
     tmp = field_spec * phase
 
