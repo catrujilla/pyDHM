@@ -116,8 +116,8 @@ def angularSpectrum(field, z, wavelength, dx, dy):
     y = np.arange(0, M, 1)  # array y
     X, Y = np.meshgrid(x - (N / 2), y - (M / 2), indexing='xy')
 
-    dfx = 1 / (dx * M)
-    dfy = 1 / (dy * N)
+    dfx = 1 / (dx * N)
+    dfy = 1 / (dy * M)
 
     field_spec = np.fft.fftshift(field)
     field_spec = np.fft.fft2(field_spec)
